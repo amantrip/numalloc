@@ -56,13 +56,13 @@
                                     @endif
                                     {{Form:: text('email', null, ['class' => 'form-control', 'placeholder' => 'Email', 'required'])}}
                                     {{Form:: password('password',  ['class' => 'form-control', 'placeholder' => 'Password', 'required']) }}
-                                    <div class="forgot">
+                                   <!-- <div class="forgot">
                                         <span>Don’t have an account?</span>
                                         <a href="/register">Register</a>
                                         <br>
                                         <span>Forgot Password?</span>
                                         <a href="/reset">Reset</a>
-                                    </div>
+                                    </div> -->
                                     {{ Form:: submit('Login') }}
                             </div>
                         </div>

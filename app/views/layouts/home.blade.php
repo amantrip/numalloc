@@ -65,7 +65,7 @@
                 <div class="col-sm-5 touch">
                     <ul>
                         <li><strong>P.</strong> 1 800 000 0000</li>
-                        <li><strong>E.</strong><a href="#"> admin@psap.app</a></li>
+                        <li><strong>E.</strong><a href="#"> admin@numalloc.app</a></li>
                     </ul>
                 </div>
             </div>
