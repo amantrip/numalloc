@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    <title>Num Alloc Port Number</title>
+    <title>Num Alloc Edit Subscriber Details</title>
 @stop
 
 @section('styling')
@@ -36,10 +36,14 @@
                 <div class="arrow_border"></div>
             </div>
             <a class="dropdown-toggle" href="#">
-                <i class="icon-user"></i>
-                <span>Admin/Associate Access</span>
+                <i class="icon-globe"></i>
+                <span>Subscriber</span>
 
             </a>
+            <ul class="active submenu">
+                <li><a href="/subscriber" class="active">Subscriber Details</a></li>
+                <li><a href="/subscriber/change">Change Password</a></li>
+            </ul>
         </li>
     </ul>
 @stop
@@ -51,49 +55,44 @@
     <div id="pad-wrapper" class="new-user">
         <div class="row header">
             <div class="col-md-12">
-                <h3>Enter a Number to Port and Enter the associated password</h3>
+                <h3>Subscriber Details </h3>
             </div>
         </div>
         <div class="row form-wrapper">
             <!-- left column -->
             <div class="col-md-6 with-sidebar">
-                {{ Form:: open(['action' => 'NumberController@portNumber', 'class' => 'form-horizontal']) }}
-                    @if(Session::has('error_message'))
-                        <div class="alert alert-danger">
-                            <i class="icon-remove-sign"></i>
-                            {{Session::get('error_message')}}
-                        </div>
-                    @endif
+                @if(Session::has('success_message'))
+                    <div class="alert alert-success">
+                        <i class="icon-ok"></i>
+                        {{Session::get('success_message')}}
+                    </div>
+                @endif
+                {{ Form:: open(['action' => 'SubscriberController@subscriberEditDetails', 'class' => 'form-horizontal']) }}
+
                     <div class="form-group">
-                        {{ Form:: label('number', 'Phone Number', ['class' => 'col-md-2 control-label']) }}
+                        {{ Form:: label('number', 'Alloted Number', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('tel', 'number', null, ['class' => 'form-control', 'id' => 'phone','required']) }}
+                            {{ Form:: label('number', $number->number, ['class' => 'control-label', 'required']) }}
+                            {{Form::hidden('id', $number->id)}}
+                            {{Form::hidden('number', $number->number)}}
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form:: label('pin', 'Pin', ['class' => 'col-md-2 control-label']) }}
+                        {{ Form:: label('cnam', 'CNAM', ['class' => 'col-md-2 control-label']) }}
+                        <div class="col-md-8">
+                            {{ Form:: input('text', 'cnam', $number->cnam, ['class' => 'form-control', 'required']) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form:: label('pin', 'Porting Pin', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
                             {{ Form:: input('password', 'pin', null, ['class' => 'form-control', 'required']) }}
 
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form:: label('ocn', 'OCN', ['class' => 'col-md-2 control-label']) }}
-                        <div class="col-md-8">
-                            {{ Form:: input('text', 'ocn', $admin->ocn, ['class' => 'form-control', 'onkeyup' =>"showOCN(this.value)"]) }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {{ Form:: label('assignee', 'Assignee', ['class' => 'col-md-2 control-label']) }}
-                        <div class="col-md-8">
-                            {{ Form:: input('text', 'assignee', $admin->assignee, ['class' => 'form-control', 'id' => 'assignee']) }}
-                            <p id="assignee"></p>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
-                            {{ Form:: submit('Submit', ['class' => 'btn btn-flat success']) }}
-                            <a href="/system" class="btn btn-flat default">Cancel</a>
+                            {{ Form:: submit('Update', ['class' => 'btn btn-flat success']) }}
                         </div>
                     </div>
                 {{Form:: close()}}
@@ -121,13 +120,25 @@
             xmlhttp.send();
         }
     }
-</script>
 
-<script>
-        $(document).ready(function(){
-           $("#phone").inputmask("mask", {"mask": "(999) 999-9999"}); //specifying fn & options
-        });
-    </script>
-    <script src="/js/inputmask.js" type="text/javascript"></script>
-    <script src="/js/jquery.inputmask.js" type="text/javascript"></script>
+
+    function showLocation(str)
+        {
+            if (str.length==0) {
+            document.getElementById("location").value="";
+            return;
+            } else {
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function() {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                    var jsonObj = JSON.parse(xmlhttp.responseText);
+                    document.getElementById("location").value=jsonObj.results[0].formatted_address;
+                }
+            }
+                xmlhttp.open("GET","http://maps.googleapis.com/maps/api/geocode/json?address="+str+"&sensor=true",true);
+                xmlhttp.send();
+            }
+        }
+
+</script>
 @stop

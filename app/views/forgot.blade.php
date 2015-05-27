@@ -2,7 +2,7 @@
 
 
 @section('title')
-    <title>Num-Alloc Login</title>
+    <title>Num-Alloc Forgot Password</title>
 @stop
 
 
@@ -19,7 +19,7 @@
             </div>
             <div class="row login">
                 <div class="col-sm-5 left_box">
-                    <h4>Registered? Now Log in to your account</h4>
+                    <h4>Forgot Password</h4>
 
                     <div class="perk_box">
                         <div class="perk">
@@ -42,28 +42,30 @@
                         <div class="box_cont">
                             <div class="division">
                                 <div class="line l"></div>
-                                <span>Login</span>
+                                <span>Reset</span>
                                 <div class="line r"></div>
                             </div>
 
                             <div class="form">
-                                {{ Form::open(['action' => 'HomeController@loginUser']) }}
-                                    @if(Session::has('error_message'))
-                                        <div class="alert alert-danger">
-                                            <i class="icon-remove-sign"></i>
-                                            {{Session::get('error_message')}}
-                                        </div>
-                                    @endif
-                                    {{Form:: text('email', null, ['class' => 'form-control', 'placeholder' => 'Email', 'required'])}}
-                                    {{Form:: password('password',  ['class' => 'form-control', 'placeholder' => 'Password', 'required']) }}
-                                   <div class="forgot">
-                                        <span>Don’t have an account?</span>
-                                        <a href="/register">Register</a>
-                                        <br>
-                                        <span>Forgot Password?</span>
-                                        <a href="/forgot">Reset</a>
+                                @if(Session::has('error_message'))
+                                    <div class="alert alert-danger">
+                                        <i class="icon-remove-sign"></i>
+                                        {{Session::get('error_message')}}
                                     </div>
-                                    {{ Form:: submit('Login') }}
+                                @endif
+                                @if(Session::has('success_message'))
+                                    <div class="alert alert-success">
+                                        <i class="icon-ok"></i>
+                                        {{Session::get('success_message')}}
+                                    </div>
+                                @endif
+                                {{ Form::open(['action' => 'HomeController@sendForgotPassword']) }}
+                                    {{Form:: text('email', null, ['class' => 'form-control', 'placeholder' => 'Email'])}}
+                                    <div class="forgot">
+                                        <span>Remember Password?</span>
+                                        <a href="/login">Go Back</a>
+                                    </div>
+                                    {{ Form:: submit('Submit') }}
                             </div>
                         </div>
                     </div>

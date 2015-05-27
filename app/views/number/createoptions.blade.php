@@ -67,7 +67,8 @@
                     <div class="form-group">
                         {{ Form:: label('number', 'Choose A Number', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('number', 'number', null, ['class' => 'form-control', 'required']) }}
+                            {{ Form:: input('tel', 'number', null, ['class' => 'form-control col-md-2', 'id' => 'phone', 'required']) }}
+
                         </div>
 
                     </div>
@@ -97,4 +98,15 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('footer')
+    <script>
+        $(document).ready(function(){
+           $("#phone").inputmask("mask", {"mask": "(999) 999-9999"}); //specifying fn & options
+        });
+    </script>
+    <script src="/js/inputmask.js" type="text/javascript"></script>
+    <script src="/js/jquery.inputmask.js" type="text/javascript"></script>
+
 @stop

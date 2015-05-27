@@ -116,7 +116,8 @@
                 document.getElementById("assignee").value=xmlhttp.responseText;
             }
         }
-            xmlhttp.open("GET","http://nodea.app:8000/get/ocn/"+str,true);
+            //xmlhttp.open("GET","http://nodea.app:8000/get/ocn/"+str,true);
+            xmlhttp.open("GET","{{getenv('ocn')}}"+str,true);
             xmlhttp.send();
         }
     }

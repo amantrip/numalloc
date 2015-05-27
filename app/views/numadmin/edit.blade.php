@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    <title>Num-Alloc Add OCN</title>
+    <title>Num-Alloc Edit Admin Profile</title>
 @stop
 
 @section('styling')
@@ -36,18 +36,15 @@
                 </div>
                 <a class="dropdown-toggle" href="#">
                     <i class="icon-user"></i>
-                    <span>Admin</span>
+                    <span>Number Admin</span>
                     <i class="icon-chevron-down"></i>
                 </a>
                 <ul class="active submenu">
-                    <li><a href="/system" class="">Number List</a></li>
+                    <li><a href="/numadmin" class="">Number List</a></li>
                     <li><a href="/number/create">Add New Number</a></li>
                     <li><a href="/number/port">Port A Number</a></li>
-                    <li><a href="/system/ocns" class="active">OCN List</a></li>
-                    <li><a href="/system/areacodes" class="">Area Code List</a></li>
-                    <li><a href="/system/manage" class="">Manage System and Number Admins</a></li>
-                    <li><a href="/system/reset">Reset Password</a></li>
-                    <li><a href="/system/edit" class="">Edit Profile</a></li>
+                    <li><a href="/numadmin/reset">Reset Password</a></li>
+                    <li><a href="/numadmin/edit" class="active">Edit Profile</a></li>
                 </ul>
             </li>
         </ul>
@@ -57,43 +54,37 @@
     <div id="pad-wrapper" class="new-user">
         <div class="row header">
             <div class="col-md-12">
-                <h3>Add OCN</h3>
+                <h3>Edit Profile</h3>
             </div>
         </div>
         <div class="row form-wrapper">
             <!-- left column -->
             <div class="col-md-6 with-sidebar">
-                @if(Session::has('error_message'))
-                    <div class="alert alert-danger">
-                        <i class="icon-remove-sign"></i>
-                        {{Session::get('error_message')}}
-                    </div>
-                @endif
-                {{ Form:: open(['action' => 'OCNController@addOCN', 'class' => 'form-horizontal']) }}
+                {{ Form:: open(['action' => 'NumberAdminController@editProfile', 'class' => 'form-horizontal']) }}
+                    {{ Form::hidden('id', $admin->id) }}
                     <div class="form-group">
-                        {{ Form:: label('state', 'State', ['class' => 'col-md-2 control-label']) }}
+                        {{ Form:: label('email', 'Email', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'state',  null, ['class' => 'form-control', 'placeholder' => 'State i.e TX, MA', 'required']) }}
+                            {{ Form:: label('email', $admin->email, ['class' => 'col-md-2 control-label']) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form:: label('ocn', 'OCN', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'ocn',  null, ['class' => 'form-control', 'placeholder' => 'OCN', 'onkeyup' =>"showOCN(this.value)",  'required']) }}
+                            {{ Form:: input('text', 'ocn', $admin->ocn, ['class' => 'form-control', 'onkeyup' =>"showOCN(this.value)"]) }}
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form:: label('company', 'Company', ['class' => 'col-md-2 control-label']) }}
+                        {{ Form:: label('assignee', 'Assignee', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'company',  null, ['class' => 'form-control', 'id' => 'assignee', 'placeholder' => 'Company Name', 'required']) }}
+                            {{ Form:: input('text', 'assignee', $admin->assignee, ['class' => 'form-control', 'id' => 'assignee']) }}
+                            <p id="assignee"></p>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
-                            <!--<button type="submit" class="btn btn-default">Sign in</button>-->
                             {{ Form:: submit('Submit', ['class' => 'btn btn-flat success']) }}
-                            <a class="btn btn-flat" href="/system/ocns">Cancel</a>
+                            <a class="btn btn-flat" href="/system">Cancel</a>
                         </div>
                     </div>
             </div>
@@ -106,7 +97,7 @@
     function showOCN(str)
     {
         if (str.length==0) {
-        document.getElementById("assignee").innerHTML="";
+        document.getElementById("assignee").value="";
         return;
         } else {
         var xmlhttp=new XMLHttpRequest();

@@ -19,11 +19,24 @@ Route::post('/forgot', 'HomeController@sendForgotPassword');
 Route::get('/reset', 'HomeController@showResetPasswordView');
 Route::post('/reset', 'HomeController@resetPassword');
 
+
+Route::get('/register', 'HomeController@showRegistrationView');
+Route::post('/register', 'HomeController@register');
+
 //OCN Routes
 Route::get('/get/ocn/{id}', 'OCNController@getOCN');
 
-// Number Admin User Routes
+//Location Route
 
+
+// Number Admin User Routes
+Route::get('/numadmin', 'NumberAdminController@showAdminView');
+
+Route::get('/numadmin/reset', 'NumberAdminController@showResetPasswordView');
+Route::post('/numadmin/reset', 'NumberAdminController@resetPassword');
+
+Route::get('/numadmin/edit', 'NumberAdminController@showEditProfileView');
+Route::post('/numadmin/edit', 'NumberAdminController@editProfile');
 
 
 // System Admin User Routes
@@ -65,6 +78,27 @@ Route::post('/number/edit', 'NumberController@editNumber');
 
 Route::get('/number/port', 'NumberController@showPortNumberView');
 Route::post('/number/port', 'NumberController@portNumber');
+
+Route::get('/number/log/{number}', 'NumberController@showLogView');
+
+//Subscriber Routes
+Route::get('/subscriber', 'SubscriberController@showSubscriberDetailsView');
+Route::post('/subscriber', 'SubscriberController@subscriberEditDetails');
+
+Route::get('/subscriber/login', 'SubscriberController@showSubscriberLoginView');
+Route::post('/subscriber/login', 'SubscriberController@subscriberLogin');
+
+Route::get('/subscriber/forgot', 'SubscriberController@showSubscriberForgotPasswordView');
+Route::post('/subscriber/forgot', 'SubscriberController@subscriberSendForgotPassword');
+
+Route::get('/subscriber/reset', 'SubscriberController@showSubscriberResetPasswordView');
+Route::post('/subscriber/reset', 'SubscriberController@subscriberResetPassword');
+
+Route::get('/subscriber/change', 'SubscriberController@showSubscriberChangePasswordView');
+Route::post('/subscriber/change', 'SubscriberController@subscriberChangePassword');
+
+
+
 
 
 Route::get('/mail', function(){

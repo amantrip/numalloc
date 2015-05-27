@@ -57,7 +57,7 @@
         <div class="row form-wrapper">
             <!-- left column -->
             <div class="col-md-6 with-sidebar">
-                {{ Form:: open(['action' => 'NumberController@storeNumber', 'class' => 'form-horizontal']) }}
+                {{ Form:: open(['action' => 'NumberController@storeNumber', 'class' => 'form-horizontal', 'enctype' => "multipart/form-data" ]) }}
 
                     <div class="form-group">
                         {{ Form:: label('number', 'Allotted Number', ['class' => 'col-md-2 control-label']) }}
@@ -87,19 +87,20 @@
                     <div class="form-group">
                         {{ Form:: label('certificate', 'Certificate', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: file('certificate', '', ['class' => '', 'required']) }}
+                            {{ Form:: file('certificate') }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form:: label('location_zip', 'Zip Code', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('number', 'location_zip', null, ['class' => 'form-control', 'required']) }}
+                            {{ Form:: input('number', 'location_zip', null, ['class' => 'form-control', 'onkeyup' =>"showLocation(this.value)", 'required']) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form:: label('location', 'Location', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'location', null, ['class' => 'form-control', 'required']) }}
+                            {{ Form:: input('text', 'location', null, ['class' => 'form-control', 'id'=> 'location', 'required']) }}
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -174,7 +175,7 @@
     function showOCN(str)
     {
         if (str.length==0) {
-        document.getElementById("assignee").innerHTML="";
+        document.getElementById("assignee").value="";
         return;
         } else {
         var xmlhttp=new XMLHttpRequest();
@@ -183,7 +184,8 @@
                 document.getElementById("assignee").value=xmlhttp.responseText;
             }
         }
-            xmlhttp.open("GET","http://nodea.app:8000/get/ocn/"+str,true);
+            //xmlhttp.open("GET","http://nodea.app:8000/get/ocn/"+str,true);
+            xmlhttp.open("GET","{{getenv('ocn')}}"+str,true);
             xmlhttp.send();
         }
     }
@@ -192,16 +194,17 @@
     function showLocation(str)
         {
             if (str.length==0) {
-            document.getElementById("assignee").innerHTML="";
+            document.getElementById("location").value="";
             return;
             } else {
             var xmlhttp=new XMLHttpRequest();
             xmlhttp.onreadystatechange=function() {
                 if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                    document.getElementById("assignee").value=xmlhttp.responseText;
+                    var jsonObj = JSON.parse(xmlhttp.responseText);
+                    document.getElementById("location").value=jsonObj.results[0].formatted_address;
                 }
             }
-                xmlhttp.open("GET","http://maps.googleapis.com/maps/api/geocode/json?address=77379&sensor=true"+str,true);
+                xmlhttp.open("GET","http://maps.googleapis.com/maps/api/geocode/json?address="+str+"&sensor=true",true);
                 xmlhttp.send();
             }
         }

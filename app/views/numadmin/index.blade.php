@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    <title>Num-ALLOC Admin</title>
+    <title>Num-ALLOC Number Admin</title>
 @stop
 
 
@@ -171,18 +171,15 @@
             </div>
             <a class="dropdown-toggle" href="#">
                 <i class="icon-user"></i>
-                <span>Admin</span>
+                <span> Number Admin</span>
                 <i class="icon-chevron-down"></i>
             </a>
             <ul class="active submenu">
                 <li><a href="" class="active">Number List</a></li>
                 <li><a href="/number/create">Add New Number</a></li>
                 <li><a href="/number/port">Port A Number</a></li>
-                <li><a href="/system/ocns" class="">OCN List</a></li>
-                <li><a href="/system/areacodes" class="">Area Code List</a></li>
-                <li><a href="/system/manage">Manage System and Number Admins</a></li>
-                <li><a href="/system/reset">Reset Password</a></li>
-                <li><a href="/system/edit">Edit Profile</a></li>
+                <li><a href="/numadmin/reset">Reset Password</a></li>
+                <li><a href="/numadmin/edit">Edit Profile</a></li>
             </ul>
         </li>
     </ul>

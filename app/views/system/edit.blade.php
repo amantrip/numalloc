@@ -100,7 +100,7 @@
     function showOCN(str)
     {
         if (str.length==0) {
-        document.getElementById("assignee").innerHTML="";
+        document.getElementById("assignee").value="";
         return;
         } else {
         var xmlhttp=new XMLHttpRequest();
@@ -109,7 +109,8 @@
                 document.getElementById("assignee").value=xmlhttp.responseText;
             }
         }
-            xmlhttp.open("GET","http://nodea.app:8000/get/ocn/"+str,true);
+            //xmlhttp.open("GET","http://nodea.app:8000/get/ocn/"+str,true);
+            xmlhttp.open("GET","{{getenv('ocn')}}"+str,true);
             xmlhttp.send();
         }
     }

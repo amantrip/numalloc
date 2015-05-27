@@ -57,7 +57,7 @@
         <div class="row form-wrapper">
             <!-- left column -->
             <div class="col-md-6 with-sidebar">
-                {{ Form:: open(['action' => 'NumberController@storeNumber', 'class' => 'form-horizontal']) }}
+                {{ Form:: open(['action' => 'NumberController@editNumber', 'class' => 'form-horizontal']) }}
 
                     <div class="form-group">
                         {{ Form:: label('number', 'Alloted Number', ['class' => 'col-md-2 control-label']) }}
@@ -68,27 +68,65 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form:: label('ocn', 'OCN Information', ['class' => 'col-md-2 control-label']) }}
+                        {{ Form:: label('cnam', 'CNAM', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('number', 'ocn', $number->ocn, ['class' => 'form-control', 'required']) }}
+                            {{ Form:: input('text', 'cnam', $number->cnam, ['class' => 'form-control', 'required']) }}
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form:: label('owner', 'Owner Information', ['class' => 'col-md-2 control-label']) }}
+                        {{ Form:: label('ocn', 'OCN Information', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'owner', $number->owner, ['class' => 'form-control', 'required']) }}
+                            {{ Form:: input('number', 'ocn', $number->ocn, ['class' => 'form-control', 'onkeyup' =>"showOCN(this.value)", 'required']) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form:: label('assignee', 'Assignee Information', ['class' => 'col-md-2 control-label']) }}
+                        <div class="col-md-8">
+                            {{ Form:: input('text', 'assignee', $number->assignee, ['class' => 'form-control', 'id' => 'assignee' , 'required']) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form:: label('certificate', 'Certificate', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: textarea('certificate', $number->certificate, ['class' => 'form-control', 'required']) }}
+                            <a href="{{$number->certificate}}">Certificate Link</a>
+                            {{Form:: file('input')}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form:: label('location_zip', 'Zip Code', ['class' => 'col-md-2 control-label']) }}
+                        <div class="col-md-8">
+                            {{ Form:: input('number', 'location_zip', $number->location_zip, ['class' => 'form-control', 'onkeyup' =>"showLocation(this.value)", 'required']) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form:: label('location', 'Location', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'location', $number->location, ['class' => 'form-control', 'required']) }}
+                            {{ Form:: input('text', 'location', $number->location, ['class' => 'form-control', 'id'=> 'location', 'required']) }}
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form:: label('otc', 'Operating Telephone Company (OTC)', ['class' => 'col-md-2 control-label']) }}
+                        <div class="col-md-8">
+                            {{ Form:: input('text', 'otc', $number->otc, ['class' => 'form-control', 'required']) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form:: label('rao', 'Revenue Accounting Office (RAO)', ['class' => 'col-md-2 control-label']) }}
+                        <div class="col-md-8">
+                            {{ Form:: input('text', 'rao', $number->rao, ['class' => 'form-control', 'required']) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form:: label('bsp', 'Billing Service Provider (BSP)', ['class' => 'col-md-2 control-label']) }}
+                        <div class="col-md-8">
+                            {{ Form:: input('text', 'bsp', $number->bsp, ['class' => 'form-control', 'required']) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form:: label('collect', 'Collect', ['class' => 'col-md-2 control-label']) }}
+                        <div class="col-md-8">
+                            {{ Form:: select('collect', ['allow'=>'Allow', 'deny'=>'Deny'], ['class'=>'col-md-2 control-label']) }}
                         </div>
                     </div>
                     <div class="form-group">
@@ -123,19 +161,55 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form:: label('comment', 'Comments', ['class' => 'col-md-2 control-label']) }}
-                        <div class="col-md-8">
-                            {{ Form:: textarea('comment', '', ['class' => 'form-control', 'required']) }}
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             {{ Form:: submit('Submit', ['class' => 'btn btn-flat success']) }}
-                            <a href="/admin" class="btn btn-flat default">Cancel</a>
+                            <a href="/system" class="btn btn-flat default">Cancel</a>
                         </div>
                     </div>
                 {{Form:: close()}}
             </div>
         </div>
     </div>
+@stop
+
+@section('footer')
+<script>
+    function showOCN(str)
+    {
+        if (str.length==0) {
+        document.getElementById("assignee").value="";
+        return;
+        } else {
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                document.getElementById("assignee").value=xmlhttp.responseText;
+            }
+        }
+            //xmlhttp.open("GET","http://nodea.app:8000/get/ocn/"+str,true);
+            xmlhttp.open("GET","{{getenv('ocn')}}"+str,true);
+            xmlhttp.send();
+        }
+    }
+
+
+    function showLocation(str)
+        {
+            if (str.length==0) {
+            document.getElementById("location").value="";
+            return;
+            } else {
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function() {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                    var jsonObj = JSON.parse(xmlhttp.responseText);
+                    document.getElementById("location").value=jsonObj.results[0].formatted_address;
+                }
+            }
+                xmlhttp.open("GET","http://maps.googleapis.com/maps/api/geocode/json?address="+str+"&sensor=true",true);
+                xmlhttp.send();
+            }
+        }
+
+</script>
 @stop

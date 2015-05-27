@@ -1,7 +1,7 @@
 <?php
 
 
-class Log extends Eloquent {
+class NumLog extends Eloquent {
 
 
     protected $table = 'log';

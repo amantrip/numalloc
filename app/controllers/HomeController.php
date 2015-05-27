@@ -77,16 +77,21 @@ class HomeController extends BaseController {
                     ->subject($email_data['subject']);
             });
 
-            return View::make('success', ['message' => 'Please check your email for access code and password link']);
+            $message = "Please check your email for access code and password link";
+            Session::flash('success_message', $message);
+            return Redirect::back();
 
         }else{ # This user does not exist, ask them to register first
 
             $message = "Your email is not registered! Please email our admin to receive an access code.";
-            return View::make('error', ['message' => $message]);
+            Session::flash('error_message', $message);
+            return Redirect::back()->withInput();
+
         }
     }
 
     public function showResetPasswordView(){
+
         return View::make('reset');
     }
 
@@ -103,7 +108,8 @@ class HomeController extends BaseController {
 
             $message = "Passwords Do no match And/OR Accesscode does not match!";
 
-            return View::make('error', ['message' => $message]);
+            Session::flash('error_message', $message);
+            return Redirect::back()->withInput();
 
         }else{
             #entries match, save new password
@@ -115,14 +121,66 @@ class HomeController extends BaseController {
         if (Auth::attempt(Input::only('email', 'password'))){
             $current_user = Auth::user();
 
-            if($current_user->type == 'associate'){
-                return Redirect::to('/associate');
+            if($current_user->type == 'number'){
+                return Redirect::to('/numadmin');
             }else {
-                return Redirect::to('/admin');
+                return Redirect::to('/system');
             }
         }
     }
 
+
+    public function showRegistrationView(){
+
+        # Un-authenticate any user
+        Auth::logout();
+
+        #make the register
+        return View::make('register');
+
+    }
+
+    public function register(){
+
+        $message = "";
+
+        if(User::where('email', '=', Input::get('email'))->count() > 0){ #check if the email ID has been registered
+            $admin = User::where('email', '=', Input::get('email'))->first();
+
+
+            if($admin->verified == 'No') { #check the user has already been verified
+
+                if ($admin->accesscode == Input::get('accesscode')) { #check if the access code matches
+
+                    $admin->password = Hash::make(Input::get('password')); # Passwords are stores after salting and hashing
+                    $admin->ocn = Input::get('ocn');
+                    $admin->assignee= Input::get('assignee');
+                    $admin->verified = 'Yes';
+
+                    $admin->save();
+                    if ($admin->type == 'number') {
+                        return Redirect::to('/numadmin');
+                    } else {
+                        return Redirect::to('/system');
+                    }
+
+                } else { #access code did not match
+                    $message = $message . "Access Code did not match! ";
+                }
+            }else{ #already verified
+                $message = $message."This account has already been verified! ";
+            }
+
+        }else{ # Email is not registered
+
+            $message = $message.'Email not registered with Num-Alloc';
+
+        }
+        # Send an error message
+        Session::flash('error_message', $message);
+        return Redirect::back()->withInput();
+
+    }
 
 
     /*
