@@ -13,7 +13,7 @@ class HomeController extends BaseController {
 
         #Check if user already authenticated
         if (Auth::check()){
-            return Redirect::to('/admin');
+            return Redirect::to('/system');
         }
 
         #Render login view
@@ -30,10 +30,10 @@ class HomeController extends BaseController {
             /*if($user->verified == 'No'){
                 return Redirect::to('/register');
             }*/
-            if($user->type == 'associate'){
-                return Redirect::to('/associate');
+            if($user->type == 'number'){
+                return Redirect::to('/numadmin');
             }else {
-                return Redirect::to('/admin');
+                return Redirect::to('/system');
             }
         }
 

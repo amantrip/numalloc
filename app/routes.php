@@ -2,10 +2,10 @@
 
 
 
-//Route::get('/','HomeController@showIndexView');
-Route::get('/', function(){
+Route::get('/','HomeController@showIndexView');
+/*Route::get('/', function(){
    return Redirect::to('/login');
-});
+}); */
 
 //Authentication Routes
 Route::get('/login', 'HomeController@showLoginView');
@@ -19,17 +19,38 @@ Route::post('/forgot', 'HomeController@sendForgotPassword');
 Route::get('/reset', 'HomeController@showResetPasswordView');
 Route::post('/reset', 'HomeController@resetPassword');
 
-// Associate User Routes
+//OCN Routes
+Route::get('/get/ocn/{id}', 'OCNController@getOCN');
+
+// Number Admin User Routes
 
 
-//Admin User Routes
-Route::get('/admin', 'AdminController@showAdminView');
-Route::get('/admin/reset', 'AdminController@showResetPasswordView');
-Route::post('/admin/reset', 'AdminController@resetPassword');
 
-Route::get('/admin/edit', 'AdminController@ShowEditProfileView');
-Route::post('/admin/edit', 'AdminController@editProfile');
+// System Admin User Routes
+Route::get('/system', 'SystemAdminController@showAdminView');
 
+Route::get('/system/reset', 'SystemAdminController@showResetPasswordView');
+Route::post('/system/reset', 'SystemAdminController@resetPassword');
+
+Route::get('/system/edit', 'SystemAdminController@showEditProfileView');
+Route::post('/system/edit', 'SystemAdminController@editProfile');
+
+Route::get('/system/manage', 'SystemAdminController@showManageAdminView');
+Route::get('/system/add', 'SystemAdminController@showAddAdminView');
+Route::post('/system/add', 'SystemAdminController@addAdmin');
+Route::get('/system/delete/{id}', 'SystemAdminController@deleteAdmin');
+
+Route::get('/system/ocns/', 'SystemAdminController@showOCNView');
+Route::get('/system/ocns/add', 'SystemAdminController@showAddOCNView');
+Route::post('/system/ocns/add', 'OCNController@addOCN');
+Route::get('/system/ocns/edit/{id}', 'SystemAdminController@showEditOCNView');
+Route::post('/system/ocns/edit', 'OCNController@editOCN');
+
+Route::get('/system/areacodes/', 'SystemAdminController@showAreaCodeView');
+Route::get('/system/areacodes/add', 'SystemAdminController@showAddAreaCodeView');
+Route::post('/system/areacodes/add', 'AreaCodeController@addAreaCode');
+Route::get('/system/areacodes/edit/{id}', 'SystemAdminController@showEditAreaCodeView');
+Route::post('/system/areacodes/edit', 'AreaCodeController@editAreaCode');
 
 
 //Number Related Routes
@@ -46,14 +67,17 @@ Route::get('/number/port', 'NumberController@showPortNumberView');
 Route::post('/number/port', 'NumberController@portNumber');
 
 
+Route::get('/mail', function(){
+   return View::make('emails.mail', ['accesscode'=> 'ABDCD' , 'role' => 'Number Admin']);
+});
 
 Route::get('/adduser', function(){
    User::create([
        'email' => 'am4227@columbia.edu',
        'password' => Hash::make('12345'),
-       'ocn'    => '2',
+       'ocn'    => '',
        'owner_name' => 'AT&T',
-       'type'   => 'admin',
+       'type'   => 'system',
        'accesscode' => 'ABCDE'
    ]);
 });

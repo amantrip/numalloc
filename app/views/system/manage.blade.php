@@ -30,13 +30,6 @@
                <span>Home</span>
            </a>
         </li>
-        <li class="">
-
-            <a href="/public">
-                <i class="icon-globe"></i>
-                <span>Public Access</span>
-            </a>
-        </li>
         <li class="active">
             <div class="pointer">
                 <div class="arrow"></div>
@@ -48,10 +41,14 @@
                 <i class="icon-chevron-down"></i>
             </a>
             <ul class="active submenu">
-                <li><a href="/admin" class="">PSAP Database</a></li>
-                <li><a href="/admin/manage" class="active">Manage Admins and Private Access</a></li>
-                <li><a href="/admin/reset" class="">Reset Password</a></li>
-                <li><a href="/admin/edit">Edit Profile</a></li>
+                <li><a href="/system">Number List</a></li>
+                <li><a href="/number/create">Add New Number</a></li>
+                <li><a href="/number/port">Port A Number</a></li>
+                <li><a href="/system/ocns" class="">OCN List</a></li>
+                <li><a href="/system/areacodes" class="">Area Code List</a></li>
+                <li><a href="/system/manage" class="active">Manage System and Number Admins</a></li>
+                <li><a href="/system/reset">Reset Password</a></li>
+                <li><a href="/system/edit">Edit Profile</a></li>
             </ul>
         </li>
     </ul>
@@ -59,6 +56,18 @@
 
 @section('content')
     <div id="pad-wrapper">
+        @if(Session::has('success_message'))
+            <div class="alert alert-success">
+                <i class="icon-ok"></i>
+                {{Session::get('success_message')}}
+            </div>
+        @endif
+        @if(Session::has('error_message'))
+            <div class="alert alert-danger">
+                <i class="icon-remove-sign"></i>
+                {{Session::get('error_message')}}
+            </div>
+        @endif
         <!-- users table -->
         <div class="table-wrapper users-table section">
             <div class="row head">
@@ -69,7 +78,7 @@
 
             <div class="row filter-block">
                 <div class="pull-right">
-                    <a class="btn-flat pull-right success new-product add-user" href="/admin/add">+ Add Admin</a>
+                    <a class="btn-flat pull-right success new-product add-user" href="/system/add">+ Add Admin</a>
                 </div>
             </div>
 
@@ -78,18 +87,18 @@
                     <thead>
                         <tr>
                             <th class="col-md-3">
-                                <span class="line"></span>Name
+                                <span class="line"></span>Email
+                            </th>
+                            <th class="col-md-2">
+                                <span class="line"></span>Type
+                            </th>
+                            <th class="col-md-2">
+                                <span class="line"></span>OCN
                             </th>
                             <th class="col-md-3">
                                 <span class="line"></span>Company
                             </th>
-                            <th class="col-md-3">
-                                <span class="line"></span>Email
-                            </th>
-                            <th class="col-md-3">
-                                <span class="line"></span>Type
-                            </th>
-                            <th class="col-md-3">
+                            <th class="col-md-2">
                                 <span class="line"></span>Verified?
                             </th>
                             <th class="col-md-3 align-right">
@@ -100,12 +109,16 @@
                     <tbody>
                         @foreach($admins as $admin)
                             <tr class="">
-                                <td>{{$admin->name}}</td>
-                                <td>{{$admin->company}}</td>
                                 <td class="">{{$admin->email}}</td>
-                                <td class="">{{$admin->type}}</td>
+                                @if($admin->type == 'system')
+                                    <td class="">System Admin</td>
+                                @else
+                                    <td class="">Number Admin</td>
+                                @endif
+                                <td class="center">{{$admin->ocn}}</td>
+                                <td class="center">{{$admin->assignee}}</td>
                                 <td class="center">{{$admin->verified}}</td>
-                                <td class="center align-right">{{ link_to("/admin/delete/{$admin->id}", "Delete") }}</td>
+                                <td class="center align-right">{{ link_to("/system/delete/{$admin->id}", "Delete") }}</td>
                             </tr>
                         @endforeach
                         <!-- row -->

@@ -37,7 +37,7 @@
             </div>
             <a class="dropdown-toggle" href="#">
                 <i class="icon-user"></i>
-                <span>Admin/Associate Access</span>
+                <span>System/Number Admin</span>
 
             </a>
         </li>
@@ -75,7 +75,7 @@
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             {{ Form:: submit('Submit', ['class' => 'btn btn-flat success']) }}
-                            <a href="/admin" class="btn btn-flat default">Cancel</a>
+                            <a href="/system" class="btn btn-flat default">Cancel</a>
                         </div>
                     </div>
                 {{Form:: close()}}
@@ -84,14 +84,14 @@
                     <div class="form-group">
                         {{ Form:: label('number', 'Pick An Area Code', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                              {{ Form:: select('areacode', ['210'=>'210-San Antonio', '212' => '212 New York'], ['class'=>'col-md-2 control-label']) }}
+                              {{ Form:: select('areacode', $areacodes, ['class'=>'col-md-2 control-label']) }}
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
-                            {{ Form:: submit('Submit', ['class' => 'btn btn-flat success']) }}
-                            <a href="/admin" class="btn btn-flat default">Cancel</a>
+                            <!--{{ Form:: submit('Submit', ['class' => 'btn btn-flat success']) }} -->
+                            <a href="/system" class="btn btn-flat default">Cancel</a>
                         </div>
                     </div>
             </div>

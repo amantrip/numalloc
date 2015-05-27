@@ -24,15 +24,15 @@
                     <div class="perk_box">
                         <div class="perk">
                             <span class="icos ico1"></span>
-                            <p><strong>Access all Numbers</strong>: Edit, Delete Entries or Assign new owners.</p>
+                            <p><strong>Access all Numbers</strong>: Edit, delete entries or assign new assignees.</p>
                         </div>
                         <div class="perk">
                             <span class="icos ico2"></span>
-                            <p><strong>Create New Admin Access Users</strong>: Use the new admin's email to send them an access code.</p>
+                            <p><strong>Create New System Admin Users</strong>: Use the new admin's email to send them an access code.</p>
                         </div>
                         <div class="perk">
                             <span class="icos ico3"></span>
-                            <p><strong>Create New Associate Access Users</strong>: Use the new user's email to send them an access code.</p>
+                            <p><strong>Create New Number Admin Users</strong>: Use the new user's email to send them an access code.</p>
                         </div>
                     </div>
                 </div>
@@ -56,13 +56,13 @@
                                     @endif
                                     {{Form:: text('email', null, ['class' => 'form-control', 'placeholder' => 'Email', 'required'])}}
                                     {{Form:: password('password',  ['class' => 'form-control', 'placeholder' => 'Password', 'required']) }}
-                                   <!-- <div class="forgot">
+                                   <div class="forgot">
                                         <span>Don’t have an account?</span>
                                         <a href="/register">Register</a>
                                         <br>
                                         <span>Forgot Password?</span>
                                         <a href="/reset">Reset</a>
-                                    </div> -->
+                                    </div>
                                     {{ Form:: submit('Login') }}
                             </div>
                         </div>

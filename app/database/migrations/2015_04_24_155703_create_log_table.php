@@ -16,7 +16,7 @@ class CreateLogTable extends Migration {
 		{
 			$table->increments('id');
             $table->bigInteger('number');
-            $table->integer('serial_number');
+            $table->enum('type', ['edit', 'port']);
             $table->string('description');
             $table->timestamps();
 		});

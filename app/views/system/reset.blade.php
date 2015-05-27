@@ -39,12 +39,14 @@
                 <i class="icon-chevron-down"></i>
             </a>
             <ul class="active submenu">
-                <li><a href="" class="active">Number List</a></li>
+                <li><a href="/system" class="">Number List</a></li>
                 <li><a href="/number/create">Add New Number</a></li>
                 <li><a href="/number/port">Port A Number</a></li>
-                <li><a href="/admin/manage">Manage Admins and Associate Users</a></li>
-                <li><a href="/admin/reset">Reset Password</a></li>
-                <li><a href="/admin/edit">Edit Profile</a></li>
+                <li><a href="/system/ocns" class="">OCN List</a></li>
+                <li><a href="/system/areacodes" class="">Area Code List</a></li>
+                <li><a href="/system/manage">Manage System and Number Admins</a></li>
+                <li><a href="/system/reset" class="active">Reset Password</a></li>
+                <li><a href="/system/edit">Edit Profile</a></li>
             </ul>
         </li>
     </ul>
@@ -66,7 +68,7 @@
                         {{Session::get('error_message')}}
                     </div>
                 @endif
-                {{ Form:: open(['action' => 'AdminController@resetPassword', 'class' => 'form-horizontal']) }}
+                {{ Form:: open(['action' => 'SystemAdminController@resetPassword', 'class' => 'form-horizontal']) }}
                     <div class="form-group">
                         {{ Form:: label('newpassword', 'New Password', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
@@ -84,7 +86,7 @@
                         <div class="col-md-offset-2 col-md-8">
                             <!--<button type="submit" class="btn btn-default">Sign in</button>-->
                             {{ Form:: submit('Reset', ['class' => 'btn btn-flat success']) }}
-                            <a class="btn btn-flat" href="/admin">Cancel</a>
+                            <a class="btn btn-flat" href="/system">Cancel</a>
                         </div>
                     </div>
             </div>

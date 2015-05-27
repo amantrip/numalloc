@@ -67,27 +67,63 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form:: label('ocn', 'OCN Information', ['class' => 'col-md-2 control-label']) }}
+                        {{ Form:: label('cnam', 'CNAM', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('number', 'ocn', 'OCN', ['class' => 'form-control', 'required']) }}
+                            {{ Form:: input('text', 'cnam', null, ['class' => 'form-control', 'onkeyup' =>"showOCN(this.value)", 'required']) }}
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form:: label('owner', 'Owner Information', ['class' => 'col-md-2 control-label']) }}
+                        {{ Form:: label('ocn', 'OCN Information', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'owner', null, ['class' => 'form-control', 'required']) }}
+                            {{ Form:: input('number', 'ocn', 'OCN', ['class' => 'form-control', 'onkeyup' =>"showOCN(this.value)", 'required']) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form:: label('assignee', 'Assignee', ['class' => 'col-md-2 control-label']) }}
+                        <div class="col-md-8">
+                            {{ Form:: input('text', 'assignee', null, ['class' => 'form-control', 'id' => 'assignee', 'required']) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form:: label('certificate', 'Certificate', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: textarea('certificate', '', ['class' => 'form-control', 'required']) }}
+                            {{ Form:: file('certificate', '', ['class' => '', 'required']) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form:: label('location_zip', 'Zip Code', ['class' => 'col-md-2 control-label']) }}
+                        <div class="col-md-8">
+                            {{ Form:: input('number', 'location_zip', null, ['class' => 'form-control', 'required']) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form:: label('location', 'Location', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
                             {{ Form:: input('text', 'location', null, ['class' => 'form-control', 'required']) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form:: label('otc', 'Operating Telephone Company (OTC)', ['class' => 'col-md-2 control-label']) }}
+                        <div class="col-md-8">
+                            {{ Form:: input('text', 'otc', null, ['class' => 'form-control', 'required']) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form:: label('rao', 'Revenue Accounting Office (RAO)', ['class' => 'col-md-2 control-label']) }}
+                        <div class="col-md-8">
+                            {{ Form:: input('text', 'rao', null, ['class' => 'form-control', 'required']) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form:: label('bsp', 'Billing Service Provider (BSP)', ['class' => 'col-md-2 control-label']) }}
+                        <div class="col-md-8">
+                            {{ Form:: input('text', 'bsp', null, ['class' => 'form-control', 'required']) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form:: label('collect', 'Collect', ['class' => 'col-md-2 control-label']) }}
+                        <div class="col-md-8">
+                            {{ Form:: select('collect', ['allow'=>'Allow', 'deny'=>'Deny'], ['class'=>'col-md-2 control-label']) }}
                         </div>
                     </div>
                     <div class="form-group">
@@ -124,7 +160,7 @@
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
                             {{ Form:: submit('Submit', ['class' => 'btn btn-flat success']) }}
-                            <a href="/admin" class="btn btn-flat default">Cancel</a>
+                            <a href="/system" class="btn btn-flat default">Cancel</a>
                         </div>
                     </div>
                 {{Form:: close()}}
@@ -132,3 +168,44 @@
         </div>
     </div>
 @stop
+
+@section('footer')
+<script>
+    function showOCN(str)
+    {
+        if (str.length==0) {
+        document.getElementById("assignee").innerHTML="";
+        return;
+        } else {
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                document.getElementById("assignee").value=xmlhttp.responseText;
+            }
+        }
+            xmlhttp.open("GET","http://nodea.app:8000/get/ocn/"+str,true);
+            xmlhttp.send();
+        }
+    }
+
+
+    function showLocation(str)
+        {
+            if (str.length==0) {
+            document.getElementById("assignee").innerHTML="";
+            return;
+            } else {
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function() {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                    document.getElementById("assignee").value=xmlhttp.responseText;
+                }
+            }
+                xmlhttp.open("GET","http://maps.googleapis.com/maps/api/geocode/json?address=77379&sensor=true"+str,true);
+                xmlhttp.send();
+            }
+        }
+
+</script>
+@stop
+

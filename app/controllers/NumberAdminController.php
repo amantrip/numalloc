@@ -1,6 +1,6 @@
 <?php
 
-class AssociateController extends \BaseController {
+class NumberAdminController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.

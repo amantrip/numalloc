@@ -10,7 +10,15 @@ class NumberController extends \BaseController {
 
         }
 
-        return View::make('number.createoptions');
+        $areacodes_all = AreaCode::all();
+        $areacodes = [];
+
+        foreach($areacodes_all as $areacode){
+
+            $areacodes[$areacode->code] = $areacode->code." ".$areacode->area;
+        }
+
+        return View::make('number.createoptions', ['areacodes' => $areacodes]);
 
     }
 
@@ -37,7 +45,7 @@ class NumberController extends \BaseController {
             return Redirect::to('/number/create/form/'.$number );
         }
 
-        Session::flash('error_message', 'Number Not Available');
+        Session::flash('error_message', 'Number not available or Number incorrect');
         return Redirect::back()->withInput();
 
     }
@@ -51,6 +59,17 @@ class NumberController extends \BaseController {
         }
 
         $user = Auth::user();
+
+        $count = Number::where('number', '=', $number)->count();
+        $info = Number::where('number', '=', $number)->first();
+
+
+        if($count == 0 || $info->cnam != NULL){
+
+            Session::flash('error_message', 'Number already allotted!');
+            return Redirect::to('/system');
+
+        }
 
         return View::make('number.create', ['user' => $user, 'number'=> $number ]);
 

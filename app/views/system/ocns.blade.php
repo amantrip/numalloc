@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    <title>Num-ALLOC Admin</title>
+    <title>Num-ALLOC OCN List</title>
 @stop
 
 
@@ -141,7 +141,7 @@
         }
 
     </style>
-    <script src="js/pace.js"></script>
+    <script src="/js/pace.js"></script>
 @stop
 
 
@@ -175,12 +175,14 @@
                 <i class="icon-chevron-down"></i>
             </a>
             <ul class="active submenu">
-                <li><a href="" class="active">Number List</a></li>
+                <li><a href="/system" class="">Number List</a></li>
                 <li><a href="/number/create">Add New Number</a></li>
                 <li><a href="/number/port">Port A Number</a></li>
-                <li><a href="/admin/manage">Manage Admins and Associate Users</a></li>
-                <li><a href="/admin/reset">Reset Password</a></li>
-                <li><a href="/admin/edit">Edit Profile</a></li>
+                <li><a href="/system/ocns" class="active">OCN List</a></li>
+                <li><a href="/system/areacodes" class="">Area Code List</a></li>
+                <li><a href="/system/manage">Manage System and Number Admins</a></li>
+                <li><a href="/system/reset">Reset Password</a></li>
+                <li><a href="/system/edit">Edit Profile</a></li>
             </ul>
         </li>
     </ul>
@@ -197,65 +199,40 @@
         <div class="table-wrapper users-table section">
             <div class="row filter-block">
                 <div class="pull-right">
-                    <a class="btn-flat pull-right success new-product add-user" href="/number/create">+ Add New Number</a>
+                    <a class="btn-flat pull-right success new-product add-user" href="/system/ocns/add">+ Add New OCN</a>
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col-md-12">
-                    <table id="example">
+                    <table id="example2">
                         <thead>
                             <tr>
-                                <th tabindex="0" rowspan="1" colspan="1">Number
+                                <th tabindex="0" rowspan="1" colspan="1">State
                                 </th>
                                 <th tabindex="0" rowspan="1" colspan="1">OCN
                                 </th>
-                                <th tabindex="0" rowspan="1" colspan="1">Owner
+                                <th tabindex="0" rowspan="1" colspan="1">Company
                                 </th>
-                                <th tabindex="0" rowspan="1" colspan="1">Certificate
-                                </th>
-                                <th tabindex="0" rowspan="1" colspan="1">Location
-                                </th>
-                                <th tabindex="0" rowspan="1" colspan="1">Alternate SPID
-                                </th>
-                                <th tabindex="0" rowspan="1" colspan="1">Service Indicator
-                                </th>
-                                <th tabindex="0" rowspan="1" colspan="1">Reachability
-                                </th>
-                                <th tabindex="0" rowspan="1" colspan="1">Type
-                                </th>
-                                <th tabindex="0" rowspan="1" colspan="1">Edit Entry?
+                                <th tabindex="0" rowspan="1" colspan="1">Edit?
                                 </th>
                              </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th rowspan="1" colspan="1">Number</th>
+                                <th rowspan="1" colspan="1">State</th>
                                 <th rowspan="1" colspan="1">OCN</th>
-                                <th rowspan="1" colspan="1">Owner</th>
-                                <th rowspan="1" colspan="1">Certificate</th>
-                                <th rowspan="1" colspan="1">Location</th>
-                                <th rowspan="1" colspan="1">Alternate SPID</th>
-                                <th rowspan="1" colspan="1">Service Indicator</th>
-                                <th rowspan="1" colspan="1">Reachability</th>
-                                <th rowspan="1" colspan="1">Type</th>
-                                <th rowspan="1" colspan="1">Edit Entry?</th>
+                                <th rowspan="1" colspan="1">Company</th>
+                                <th rowspan="1" colspan="1">Edit?</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach( $numbers as $number)
+                            @foreach( $ocns as $ocn)
                                 <tr>
-                                    <td>{{$number->number}}</td>
-                                    <td>{{$number->ocn}}</td>
-                                    <td>{{$number->owner}}</td>
-                                    <td>{{$number->certificate}}</td>
-                                    <td>{{$number->location}}</td>
-                                    <td>{{$number->alt_spid}}</td>
-                                    <td>{{$number->service_indicator}}</td>
-                                    <td>{{$number->reachability}}</td>
-                                    <td>{{$number->type}}</td>
-                                    <td><a href="/number/edit/{{$number->id}}">Edit</a></td>
-
+                                    <td>{{$ocn->state}}</td>
+                                    <td>{{$ocn->ocn}}</td>
+                                    <td>{{$ocn->company}}</td>
+                                    <td><a href="/system/ocns/edit/{{$ocn->id}}">Edit</a></td>
                                 </tr>
                             @endforeach
 
@@ -269,10 +246,10 @@
 @stop
 
 @section('footer')
-    <script src="js/jquery.dataTables.js"></script>
+    <script src="/js/jquery.dataTables2.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#example').dataTable({
+            $('#example2').dataTable({
                 "sPaginationType": "full_numbers"
             });
         });
