@@ -55,6 +55,12 @@
                                             {{Session::get('error_message')}}
                                         </div>
                                     @endif
+                                    @if(Session::has('success_message'))
+                                        <div class="alert alert-success">
+                                            <i class="icon-ok"></i>
+                                            {{Session::get('success_message')}}
+                                        </div>
+                                    @endif
                                     {{Form:: text('tel', '', ['class' => 'form-control', 'placeholder' => 'Number', 'id'=> 'phone', 'required'])}}
                                     {{Form:: password('password',  ['class' => 'form-control', 'placeholder' => 'Password', 'required']) }}
                                    <div class="forgot">

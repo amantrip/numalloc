@@ -49,7 +49,7 @@ class SubscriberController extends \BaseController {
     }
 
     public function subscriberSendForgotPassword(){
-
+        //twilio
     }
 
     public function showSubscriberResetPasswordView(){
@@ -57,6 +57,32 @@ class SubscriberController extends \BaseController {
     }
 
     public function subscriberResetPassword(){
+
+        #get number details
+        $number_formatted = Input::get('tel');
+        $number_correct = preg_replace('/\D+/', '', $number_formatted);
+        $number = Number::where('number', '=', $number_correct)->get()->first();
+
+        #Get form inputs
+        $password = Input::get('password');
+        $repassword = Input::get('repassword');
+        $accesscode = Input::get('accesscode');
+
+        if($password != $repassword || $accesscode != $number->accesscode){
+
+            $message = "Passwords Do no match And/OR Accesscode does not match!";
+
+            Session::flash('error_message', $message);
+            return Redirect::back()->withInput();
+
+        }else{
+            #entries match, save new password
+            $number->password = Hash::make($password);
+            $number->save();
+        }
+
+        Session::flash('success_message', "Password Reset, Please login");
+        return Redirect::to('/subscriber/login');
 
     }
 

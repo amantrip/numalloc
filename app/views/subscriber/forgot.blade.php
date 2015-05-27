@@ -19,20 +19,20 @@
             </div>
             <div class="row login">
                 <div class="col-sm-5 left_box">
-                    <h4>Forgot Password</h4>
+                    <h4>Subscriber Forgot Password</h4>
 
                     <div class="perk_box">
                         <div class="perk">
                             <span class="icos ico1"></span>
-                            <p><strong>Access all Numbers</strong>: Edit, delete entries or assign new assignees.</p>
+                            <p><strong>Access your Number</strong>: Edit cnam details.</p>
                         </div>
                         <div class="perk">
                             <span class="icos ico2"></span>
-                            <p><strong>Create New System Admin Users</strong>: Use the new admin's email to send them an access code.</p>
+                            <p><strong>Change Password</strong>: Use your password to access cnam and pin for porting.</p>
                         </div>
                         <div class="perk">
                             <span class="icos ico3"></span>
-                            <p><strong>Create New Number Admin Users</strong>: Use the new user's email to send them an access code.</p>
+                            <p><strong>Change Pin</strong>: Use pin to port your number to a new carrier.</p>
                         </div>
                     </div>
                 </div>
@@ -59,11 +59,11 @@
                                         {{Session::get('success_message')}}
                                     </div>
                                 @endif
-                                {{ Form::open(['action' => 'HomeController@sendForgotPassword']) }}
-                                    {{Form:: text('email', null, ['class' => 'form-control', 'placeholder' => 'Email'])}}
+                                {{ Form::open(['action' => 'SubscriberController@subscriberSendForgotPassword']) }}
+                                    {{Form:: text('tel', null, ['class' => 'form-control', 'id' => 'phone' ,'placeholder' => 'Number'])}}
                                     <div class="forgot">
                                         <span>Remember Password?</span>
-                                        <a href="/login">Go Back</a>
+                                        <a href="/subscriber/login">Go Back</a>
                                     </div>
                                     {{ Form:: submit('Submit') }}
                             </div>
@@ -75,3 +75,13 @@
     </div>
 @stop
 
+@section('footer')
+    <script>
+        $(document).ready(function(){
+           $("#phone").inputmask("mask", {"mask": "(999) 999-9999"}); //specifying fn & options
+        });
+    </script>
+    <script src="/js/inputmask.js" type="text/javascript"></script>
+    <script src="/js/jquery.inputmask.js" type="text/javascript"></script>
+
+@stop
