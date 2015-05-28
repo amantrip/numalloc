@@ -63,7 +63,7 @@ class SubscriberController extends \BaseController {
             $number->accesscode = $accesscode;
             $number->save();
 
-            $txt_message ="Your access code is ".$accesscode.". Use this link: ".getenv('current_node') ."reset to reset password.";
+            $txt_message ="Your access code is ".$accesscode.". Use this link: ".getenv('current_node') ."subscriber/reset to reset password.";
 
             // Create an authenticated client for the Twilio API
             $client = new Services_Twilio(getenv('TWILIO_ACCOUNT_SID'), getenv('TWILIO_AUTH_TOKEN'));
