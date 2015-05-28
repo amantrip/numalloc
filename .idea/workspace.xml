@@ -35,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SubscriberController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SubscriberController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/SubscriberController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.5" vertical-offset="660" max-vertical-offset="2580">
-              <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+            <state vertical-scroll-proportion="1.4705882" vertical-offset="0" max-vertical-offset="3150">
+              <caret line="65" column="106" selection-start-line="65" selection-start-column="106" selection-end-line="65" selection-end-column="106" />
               <folding />
             </state>
           </provider>
@@ -48,8 +48,8 @@
       <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.75" vertical-offset="1380" max-vertical-offset="3045">
-              <caret line="98" column="8" selection-start-line="98" selection-start-column="8" selection-end-line="128" selection-end-column="9" />
+            <state vertical-scroll-proportion="-1.875" vertical-offset="705" max-vertical-offset="3045">
+              <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="89" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -65,21 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forgot.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="forgot.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/subscriber/forgot.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5625" vertical-offset="570" max-vertical-offset="1380">
-              <caret line="62" column="132" selection-start-line="62" selection-start-column="132" selection-end-line="62" selection-end-column="132" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forgot.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/forgot.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.791667" vertical-offset="530" max-vertical-offset="1245">
-              <caret line="59" column="42" selection-start-line="0" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+            <state vertical-scroll-proportion="-15.625" vertical-offset="570" max-vertical-offset="1380">
+              <caret line="63" column="56" selection-start-line="63" selection-start-column="56" selection-end-line="63" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -141,7 +131,6 @@
         <option value="$PROJECT_DIR$/app/views/system/index.blade.php" />
         <option value="$PROJECT_DIR$/app/views/number/log.blade.php" />
         <option value="$PROJECT_DIR$/app/views/number/edit.blade.php" />
-        <option value="$PROJECT_DIR$/.env.local.php" />
         <option value="$PROJECT_DIR$/.env.php" />
         <option value="$PROJECT_DIR$/app/views/emails/verify.blade.php" />
         <option value="$PROJECT_DIR$/app/views/system/edit.blade.php" />
@@ -164,8 +153,9 @@
         <option value="$PROJECT_DIR$/app/views/home.blade.php" />
         <option value="$PROJECT_DIR$/app/views/subscriber/login.blade.php" />
         <option value="$PROJECT_DIR$/app/views/subscriber/reset.blade.php" />
-        <option value="$PROJECT_DIR$/app/controllers/SubscriberController.php" />
         <option value="$PROJECT_DIR$/app/views/subscriber/forgot.blade.php" />
+        <option value="$PROJECT_DIR$/.env.local.php" />
+        <option value="$PROJECT_DIR$/app/controllers/SubscriberController.php" />
       </list>
     </option>
   </component>
@@ -475,6 +465,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nodeA" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nodeA" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -638,13 +650,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/js/jquery.dataTables3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3322884" vertical-offset="142033" max-vertical-offset="181575">
-          <caret line="9483" column="42" selection-start-line="9483" selection-start-column="42" selection-end-line="9483" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/jquery.dataTables2.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16114458" vertical-offset="142033" max-vertical-offset="181575">
@@ -763,14 +768,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-75.0" vertical-offset="0" max-vertical-offset="2130">
           <caret line="120" column="62" selection-start-line="120" selection-start-column="62" selection-end-line="120" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env.local.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2109375" vertical-offset="0" max-vertical-offset="640">
-          <caret line="9" column="55" selection-start-line="9" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
           <folding />
         </state>
       </provider>
@@ -1016,14 +1013,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.75" vertical-offset="1380" max-vertical-offset="3045">
-          <caret line="98" column="8" selection-start-line="98" selection-start-column="8" selection-end-line="128" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/subscriber/details.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.5" vertical-offset="597" max-vertical-offset="2235">
@@ -1048,18 +1037,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/SubscriberController.php">
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/nodeA_2015-05-27.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.5" vertical-offset="660" max-vertical-offset="2580">
-          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.2931596" vertical-offset="0" max-vertical-offset="26475">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.875" vertical-offset="705" max-vertical-offset="3045">
+          <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="89" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env.local.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.328125" vertical-offset="0" max-vertical-offset="640">
+          <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/subscriber/forgot.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5625" vertical-offset="570" max-vertical-offset="1380">
-          <caret line="62" column="132" selection-start-line="62" selection-start-column="132" selection-end-line="62" selection-end-column="132" />
+        <state vertical-scroll-proportion="-15.625" vertical-offset="570" max-vertical-offset="1380">
+          <caret line="63" column="56" selection-start-line="63" selection-start-column="56" selection-end-line="63" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/SubscriberController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.4705882" vertical-offset="0" max-vertical-offset="3150">
+          <caret line="65" column="106" selection-start-line="65" selection-start-column="106" selection-end-line="65" selection-end-column="106" />
           <folding />
         </state>
       </provider>

@@ -49,7 +49,45 @@ class SubscriberController extends \BaseController {
     }
 
     public function subscriberSendForgotPassword(){
-        //twilio
+
+        #get number details
+        $number_formatted = Input::get('tel');
+        $number_correct = preg_replace('/\D+/', '', $number_formatted);
+        $number = Number::where('number', '=', $number_correct)->get()->first();
+        $count = Number::where('number', '=', $number_correct)->count();
+
+        if($count > 0){ #Existing User
+
+            #Generate a random access code for password reset
+            $accesscode = Str::random(5);
+            $number->accesscode = $accesscode;
+            $number->save();
+
+            $txt_message ="Your access code is ".$accesscode.". Use this link: ".getenv('current_node') ."reset to reset password.";
+
+            // Create an authenticated client for the Twilio API
+            $client = new Services_Twilio(getenv('TWILIO_ACCOUNT_SID'), getenv('TWILIO_AUTH_TOKEN'));
+
+            // Use the Twilio REST API client to send a text message
+            $m = $client->account->messages->sendMessage(
+                getenv('TWILIO_NUMBER'), // the text will be sent from your Twilio number
+                $number->number, // the phone number the text will be sent to
+                $txt_message // the body of the text message
+            );
+
+            $message = "Please check your phone for access code and password link";
+            Session::flash('success_message', $message);
+            return Redirect::back();
+
+        }else{ # This user does not exist, ask them to register first
+
+            $message = "Your phone is not registered! Please register this number before accessing.";
+            Session::flash('error_message', $message);
+            return Redirect::back()->withInput();
+
+        }
+
+
     }
 
     public function showSubscriberResetPasswordView(){
