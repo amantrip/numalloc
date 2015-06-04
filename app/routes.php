@@ -39,6 +39,10 @@ Route::get('/numadmin/edit', 'NumberAdminController@showEditProfileView');
 Route::post('/numadmin/edit', 'NumberAdminController@editProfile');
 
 
+// Privileged Admin User Routes
+
+
+
 // System Admin User Routes
 Route::get('/system', 'SystemAdminController@showAdminView');
 
@@ -109,7 +113,7 @@ Route::get('/adduser', function(){
    User::create([
        'email' => 'am4227@columbia.edu',
        'password' => Hash::make('12345'),
-       'ocn'    => '',
+       'ocn'    => '0',
        'owner_name' => 'AT&T',
        'type'   => 'system',
        'accesscode' => 'ABCDE'

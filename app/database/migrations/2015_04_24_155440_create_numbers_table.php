@@ -22,7 +22,7 @@ class CreateNumbersTable extends Migration {
             $table->string('rao'); //The Telcordia-assigned billing Revenue Accounting Office.
             $table->string('bsp'); // Billing Service Provider.
             $table->enum('collect', ['allow', 'deny']);
-            $table->integer('alt_spid');
+            $table->string('alt_spid');
             $table->string('service_indicator');
             $table->string('reachability');
             $table->enum('type', ['mobile', 'landline']);

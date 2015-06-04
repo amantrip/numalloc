@@ -85,11 +85,19 @@ class NumberController extends \BaseController {
         }
 
 
+
+
+        if(Input::get('assignee') == "undefined" || Input::get("alt_spid_text") == "undefined"){
+
+            Session::flash('error_message', 'OCN/Alt SPID Undefined! Please re-try with a valid OCN');
+            return Redirect::back()->withInput();
+
+        }
+
         $number = Number::where('number', '=', Input::get('number'))->first();
 
-
-        $number->ocn = Input::get('ocn');
         $number->cnam= Input::get('cnam');
+        $number->ocn = Input::get('ocn');
         $number->assignee = Input::get('assignee');
         $number->location_zip = Input::get('location_zip');
         $number->location = Input::get('location');
@@ -141,85 +149,92 @@ class NumberController extends \BaseController {
             return Redirect::to('/');
         }
 
+        if(Input::get('assignee') == "undefined" || Input::get("alt_spid_text") == "undefined"){
+
+            Session::flash('error_message', 'OCN/Alt SPID Undefined! Please re-try with a valid OCN');
+            return Redirect::back()->withInput();
+
+        }
+
 
         $number = Number::find(Input::get('id'));
 
         if($number->cnam !== Input::get('cnam')){
-            $comment = "Changed CNAM value from ".$number->cnam." to ".Input::get('cnam');
+            $comment = "CNAM: ".$number->cnam." &#8594; ".Input::get('cnam');
             static::addToLog($number->number, $comment, 'edit');
             $number->cnam = Input::get('cnam');
         }
 
         if($number->ocn !== Input::get('ocn')){
 
-            $comment = "Changed OCN value from ".$number->ocn." to ".Input::get('ocn');
+            $comment = "OCN: ".$number->ocn." &#8594; ".Input::get('ocn');
             static::addToLog($number->number, $comment, 'edit');
             $number->ocn = Input::get('ocn');
         }
 
 
         if($number->assignee !== Input::get('assignee')){
-            $comment = "Changed Assignee value from ".$number->assignee." to ".Input::get('assignee');
+            $comment = "Assignee: ".$number->assignee." &#8594; ".Input::get('assignee');
             static::addToLog($number->number, $comment, 'edit');
             $number->assignee = Input::get('assignee');
         }
 
         if($number->location_zip !== Input::get('location_zip')){
-            $comment = "Changed Location Zip value from ".$number->location_zip." to ".Input::get('location_zip');
+            $comment = "Zip: ".$number->location_zip." &#8594; ".Input::get('location_zip');
             static::addToLog($number->number, $comment, 'edit');
             $number->location_zip = Input::get('location_zip');
         }
 
         if($number->location !== Input::get('location')){
-            $comment = "Changed Location value from ".$number->location." to ".Input::get('location');
+            $comment = "Location: ".$number->location." &#8594; ".Input::get('location');
             static::addToLog($number->number, $comment, 'edit');
             $number->location= Input::get('location');
         }
 
         if($number->otc !== Input::get('otc')){
-            $comment = "Changed OTC value from ".$number->otc." to ".Input::get('otc');
+            $comment = "OTC: ".$number->otc." &#8594; ".Input::get('otc');
             static::addToLog($number->number, $comment, 'edit');
             $number->otc= Input::get('otc');
         }
 
         if($number->rao !== Input::get('rao')){
-            $comment = "Changed RAO value from ".$number->rao." to ".Input::get('rao');
+            $comment = "RAO: ".$number->rao." &#8594; ".Input::get('rao');
             static::addToLog($number->number, $comment, 'edit');
             $number->rao = Input::get('rao');
         }
 
         if($number->bsp !== Input::get('bsp')){
-            $comment = "Changed BSP value from ".$number->bsp." to ".Input::get('bsp');
+            $comment = "BSP: ".$number->bsp." &#8594; ".Input::get('bsp');
             static::addToLog($number->number, $comment, 'edit');
             $number->bsp = Input::get('bsp');
         }
 
         if($number->collect !== Input::get('collect')){
-            $comment = "Changed Collect value from ".$number->collect." to ".Input::get('collect');
+            $comment = "Collect: ".$number->collect." &#8594; ".Input::get('collect');
             static::addToLog($number->number, $comment, 'edit');
             $number->collect = Input::get('collect');
         }
 
         if($number->alt_spid !== Input::get('alt_spid')){
-            $comment = "Changed Alt SPID value from ".$number->alt_spid." to ".Input::get('alt_spid');
+            $comment = "Alt SPID: ".$number->alt_spid." &#8594; ".Input::get('alt_spid');
             static::addToLog($number->number, $comment, 'edit');
             $number->alt_spid = Input::get('alt_spid');
         }
 
         if($number->service_indicator !== Input::get('service_indicator')){
-            $comment = "Changed Service Indicator value from ".$number->service_indicator." to ".Input::get('service_indicator');
+            $comment = "Service Indicator: ".$number->service_indicator." &#8594; ".Input::get('service_indicator');
             static::addToLog($number->number, $comment, 'edit');
             $number->service_indicator = Input::get('service_indicator');
         }
 
         if($number->reachability !== Input::get('reachability')){
-            $comment = "Changed Reachability value from ".$number->reachability." to ".Input::get('reachability');
+            $comment = "Reachability: ".$number->reachability." &#8594; ".Input::get('reachability');
             static::addToLog($number->number, $comment, 'edit');
             $number->reachability = Input::get('reachability');
         }
 
         if($number->type !== Input::get('type')){
-            $comment = "Changed Type value from ".$number->type." to ".Input::get('type');
+            $comment = "Type: ".$number->type." &#8594; ".Input::get('type');
             static::addToLog($number->number, $comment, 'edit');
             $number->type = Input::get('type');
         }
@@ -233,7 +248,7 @@ class NumberController extends \BaseController {
         }
 
         if($number->pin != crypt(Input::get('pin'), $number->pin)){
-            $comment = "Changed Pin Value";
+            $comment = "Changed PIN";
             static::addToLog($number->number, $comment, 'edit');
             $number->pin = Hash::make(Input::get('pin'));
         }
@@ -288,17 +303,17 @@ class NumberController extends \BaseController {
         $number = Number::where('number', '=', $number_correct)->first();
 
 
-        if($count == 1) {
+        if($count == 1 && Input::get('ocn') != "0") {
             if(crypt(Input::get('pin'), $number->pin) == $number->pin){
             #if (Hash::make(Input::get('pin')) == $number->pin) {
 
-                $comment = "Porting from OCN: ".$number->ocn." to OCN: ".Input::get('ocn');
+                $comment = "Porting OCN: ".$number->ocn." &#8594; OCN: ".Input::get('ocn');
                 static::addToLog($number->number, $comment, 'port');
 
-                $comment = "Changed OCN value from ".$number->ocn." to ".Input::get('ocn');
+                $comment = "OCN: ".$number->ocn." &#8594; ".Input::get('ocn');
                 static::addToLog($number->number, $comment, 'edit');
 
-                $comment = "Changed Assignee value from ".$number->assignee." to ".Input::get('assignee');
+                $comment = "Assignee: ".$number->assignee." &#8594; ".Input::get('assignee');
                 static::addToLog($number->number, $comment, 'edit');
 
                 $number->ocn = Input::get('ocn');
@@ -318,7 +333,7 @@ class NumberController extends \BaseController {
             }
         }
 
-        Session::flash('error_message', 'Number Not Allotted or Incorrect Pin');
+        Session::flash('error_message', 'Number Not Allotted/Incorrect PIN/ OCN cannot be 0');
         return Redirect::back()->withInput();
 
     }

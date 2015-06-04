@@ -177,9 +177,9 @@
             <ul class="active submenu">
                 <li><a href="/system" class="">Number List</a></li>
                 <li><a href="/number/create">Add New Number</a></li>
-                <li><a href="/number/port">Port A Number</a></li>
+                <li><a href="/number/port">Port Number</a></li>
                 <li><a href="/system/ocns" class="active">OCN List</a></li>
-                <li><a href="/system/areacodes" class="">Area Code List</a></li>
+                <li><a href="/system/areacodes" class="">Area Codes</a></li>
                 <li><a href="/system/manage">Manage System and Number Admins</a></li>
                 <li><a href="/system/reset">Reset Password</a></li>
                 <li><a href="/system/edit">Edit Profile</a></li>
@@ -214,6 +214,8 @@
                                 </th>
                                 <th tabindex="0" rowspan="1" colspan="1">Company
                                 </th>
+                                <th tabindex="0" rowspan="1" colspan="1">Status
+                                </th>
                                 <th tabindex="0" rowspan="1" colspan="1">Edit?
                                 </th>
                              </tr>
@@ -223,6 +225,7 @@
                                 <th rowspan="1" colspan="1">State</th>
                                 <th rowspan="1" colspan="1">OCN</th>
                                 <th rowspan="1" colspan="1">Company</th>
+                                <th rowspan="1" colspan="1">Status</th>
                                 <th rowspan="1" colspan="1">Edit?</th>
                             </tr>
                         </tfoot>
@@ -232,6 +235,7 @@
                                     <td>{{$ocn->state}}</td>
                                     <td>{{$ocn->ocn}}</td>
                                     <td>{{$ocn->company}}</td>
+                                    <td>{{$ocn->type}}</td>
                                     <td><a href="/system/ocns/edit/{{$ocn->id}}">Edit</a></td>
                                 </tr>
                             @endforeach

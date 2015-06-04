@@ -42,9 +42,9 @@
                 <ul class="active submenu">
                     <li><a href="/system" class="">Number List</a></li>
                     <li><a href="/number/create">Add New Number</a></li>
-                    <li><a href="/number/port">Port A Number</a></li>
+                    <li><a href="/number/port">Port Number</a></li>
                     <li><a href="/system/ocns" class="active">OCN List</a></li>
-                    <li><a href="/system/areacodes" class="">Area Code List</a></li>
+                    <li><a href="/system/areacodes" class="">Area Codes</a></li>
                     <li><a href="/system/manage" class="">Manage System and Number Admins</a></li>
                     <li><a href="/system/reset">Reset Password</a></li>
                     <li><a href="/system/edit" class="">Edit Profile</a></li>
@@ -87,6 +87,14 @@
                         {{ Form:: label('company', 'Company', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
                             {{ Form:: input('text', 'company',  $ocn->company, ['class' => 'form-control', 'id' => 'assignee',  'required']) }}
+                        </div>
+                    </div>
+                    <div class="form-group FIELD-BOX">
+                        {{ Form:: label('type', 'Status', ['class' => 'col-md-2 control-label']) }}
+                        <div class="col-md-8">
+                            <label class="radio">{{ Form:: radio('type', 'active', true) }}Active</label>
+
+                            <label class="radio">{{ Form:: radio('type', 'inactive', false) }} Inactive</label>
                         </div>
                     </div>
 

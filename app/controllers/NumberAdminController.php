@@ -74,6 +74,13 @@ class NumberAdminController extends \BaseController {
 
         $user = User::find(Auth::user()->id);
 
+        if(Input::get('ocn') == "0"){
+
+            Session::flash('error_message', 'OCN cannot be zero!');
+            return Redirect::back()->withInput();
+
+        }
+
         $user->ocn = Input::get('ocn');
         $user->assignee = Input::get('assignee');
         $user->save();

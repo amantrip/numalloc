@@ -4,9 +4,17 @@ class OCNController extends \BaseController {
 
 	public function getOCN($id){
 
-        $ocn = OCN::where('ocn', '=', $id)->first();
+        $ocn = OCN::where('ocn', '=', $id)->where('type', '=', 'active')->first();
+        $count = OCN::where('ocn', '=', $id)->where('type', '=', 'active')->count();
 
-        return $ocn->company;
+
+        if($count > 0) {
+
+            return $ocn->company;
+
+        }else{
+            return "undefined";
+        }
 
     }
 
@@ -16,7 +24,8 @@ class OCNController extends \BaseController {
         OCN::create([
            'state'  => Input::get('state'),
             'ocn'   => Input::get('ocn'),
-            'company'   => Input::get('company')
+            'company'   => Input::get('company'),
+            'type' => Input::get('type')
         ]);
 
         Session::flash('success_message', "OCN successfully added!");
@@ -31,6 +40,7 @@ class OCNController extends \BaseController {
         $ocn->state = Input::get('state');
         $ocn->ocn = Input::get('ocn');
         $ocn->company = Input::get('company');
+        $ocn->type = Input::get('type');
 
         $ocn->save();
 

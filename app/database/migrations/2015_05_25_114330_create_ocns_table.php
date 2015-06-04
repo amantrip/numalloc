@@ -14,6 +14,7 @@ class CreateOcnsTable extends Migration {
             $table->string('state');
             $table->string('ocn')->unique();
             $table->string('company');
+            $table->enum('type', ['active', 'inactive'])->default('active');
             $table->timestamps();
 		});
 	}

@@ -60,6 +60,12 @@
         <div class="row form-wrapper">
             <!-- left column -->
             <div class="col-md-6 with-sidebar">
+                @if(Session::has('error_message'))
+                    <div class="alert alert-danger">
+                        <i class="icon-remove-sign"></i>
+                        {{Session::get('error_message')}}
+                    </div>
+                @endif
                 {{ Form:: open(['action' => 'NumberAdminController@editProfile', 'class' => 'form-horizontal']) }}
                     {{ Form::hidden('id', $admin->id) }}
                     <div class="form-group">

@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form:: label('pin', 'Pin', ['class' => 'col-md-2 control-label']) }}
+                        {{ Form:: label('pin', 'PIN', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
                             {{ Form:: input('password', 'pin', null, ['class' => 'form-control', 'required']) }}
 
@@ -80,13 +80,13 @@
                     <div class="form-group">
                         {{ Form:: label('ocn', 'OCN', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'ocn', $admin->ocn, ['class' => 'form-control', 'onkeyup' =>"showOCN(this.value)"]) }}
+                            {{ Form:: input('text', 'ocn', null, ['class' => 'form-control', 'onkeyup' =>"showOCN(this.value)"]) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form:: label('assignee', 'Assignee', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'assignee', $admin->assignee, ['class' => 'form-control', 'id' => 'assignee']) }}
+                            {{ Form:: input('text', 'assignee', null, ['class' => 'form-control', 'readonly'=>'readonly','id' => 'assignee']) }}
                             <p id="assignee"></p>
                         </div>
                     </div>

@@ -51,16 +51,22 @@
     <div id="pad-wrapper" class="new-user">
         <div class="row header">
             <div class="col-md-12">
-                <h3>Edit Details </h3>
+                <h3>Edit Details for {{$number->number}} </h3>
             </div>
         </div>
         <div class="row form-wrapper">
             <!-- left column -->
             <div class="col-md-6 with-sidebar">
+                @if(Session::has('error_message'))
+                    <div class="alert alert-danger">
+                        <i class="icon-remove-sign"></i>
+                        {{Session::get('error_message')}}
+                    </div>
+                @endif
                 {{ Form:: open(['action' => 'NumberController@editNumber', 'class' => 'form-horizontal']) }}
 
                     <div class="form-group">
-                        {{ Form:: label('number', 'Alloted Number', ['class' => 'col-md-2 control-label']) }}
+                        {{ Form:: label('number', 'TN', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
                             {{ Form:: label('number', $number->number, ['class' => 'control-label', 'required']) }}
                             {{Form::hidden('id', $number->id)}}
@@ -74,7 +80,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form:: label('ocn', 'OCN Information', ['class' => 'col-md-2 control-label']) }}
+                        {{ Form:: label('ocn', 'OCN', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
                             {{ Form:: input('number', 'ocn', $number->ocn, ['class' => 'form-control', 'onkeyup' =>"showOCN(this.value)", 'required']) }}
                         </div>
@@ -82,7 +88,7 @@
                     <div class="form-group">
                         {{ Form:: label('assignee', 'Assignee Information', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'assignee', $number->assignee, ['class' => 'form-control', 'id' => 'assignee' , 'required']) }}
+                            {{ Form:: input('text', 'assignee', $number->assignee, ['class' => 'form-control', 'id' => 'assignee' , 'readonly' => 'readonly', 'required']) }}
                         </div>
                     </div>
                     <div class="form-group">
@@ -108,19 +114,19 @@
                     <div class="form-group">
                         {{ Form:: label('otc', 'Operating Telephone Company (OTC)', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'otc', $number->otc, ['class' => 'form-control', 'required']) }}
+                            {{ Form:: input('text', 'otc', $number->otc, ['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form:: label('rao', 'Revenue Accounting Office (RAO)', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'rao', $number->rao, ['class' => 'form-control', 'required']) }}
+                            {{ Form:: input('text', 'rao', $number->rao, ['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form:: label('bsp', 'Billing Service Provider (BSP)', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'bsp', $number->bsp, ['class' => 'form-control', 'required']) }}
+                            {{ Form:: input('text', 'bsp', $number->bsp, ['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="form-group">
@@ -132,19 +138,25 @@
                     <div class="form-group">
                         {{ Form:: label('alt_spid', 'Alternate SPID', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'alt_spid', $number->alt_spid, ['class' => 'form-control', 'required']) }}
+                            {{ Form:: input('text', 'alt_spid', null, ['class' => 'form-control', 'onkeyup' =>"showOCN2(this.value)", 'required']) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ Form:: label('alt_spid_text', 'Alternate SPID Information', ['class' => 'col-md-2 control-label']) }}
+                        <div class="col-md-8">
+                            {{ Form:: input('text', 'alt_spid_text', null, ['class' => 'form-control', 'id' =>"assignee2", "readonly" => "readonly",  'required']) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form:: label('service_indicator', 'Service Indicator', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'service_indicator', $number->service_indicator, ['class' => 'form-control', 'required']) }}
+                            {{ Form:: input('text', 'service_indicator', $number->service_indicator, ['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form:: label('reachability', 'Reachability', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'reachability', $number->reachability, ['class' => 'form-control', 'required']) }}
+                            {{ Form:: input('text', 'reachability', $number->reachability, ['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="form-group">
@@ -154,9 +166,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form:: label('pin', 'Pin', ['class' => 'col-md-2 control-label']) }}
+                        {{ Form:: label('pin', 'PIN', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('password', 'pin', null, ['class' => 'form-control', 'required']) }}
+                            {{ Form:: input('password', 'pin', null, ['class' => 'form-control']) }}
 
                         </div>
                     </div>
@@ -192,24 +204,42 @@
         }
     }
 
-
-    function showLocation(str)
-        {
-            if (str.length==0) {
-            document.getElementById("location").value="";
-            return;
-            } else {
-            var xmlhttp=new XMLHttpRequest();
-            xmlhttp.onreadystatechange=function() {
-                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                    var jsonObj = JSON.parse(xmlhttp.responseText);
-                    document.getElementById("location").value=jsonObj.results[0].formatted_address;
-                }
-            }
-                xmlhttp.open("GET","http://maps.googleapis.com/maps/api/geocode/json?address="+str+"&sensor=true",true);
-                xmlhttp.send();
+    function showOCN2(str)
+    {
+        if (str.length==0) {
+        document.getElementById("assignee2").value="";
+        return;ß
+        } else {
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                document.getElementById("assignee2").value=xmlhttp.responseText;
             }
         }
+            //xmlhttp.open("GET","http://nodea.app:8000/get/ocn/"+str,true);
+            xmlhttp.open("GET","{{getenv('ocn')}}"+str,true);
+            xmlhttp.send();
+        }
+    }
+
+
+    function showLocation(str)
+    {
+        if (str.length==0) {
+        document.getElementById("location").value="";
+        return;
+        } else {
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                var jsonObj = JSON.parse(xmlhttp.responseText);
+                document.getElementById("location").value=jsonObj.results[0].formatted_address;
+            }
+        }
+            xmlhttp.open("GET","http://maps.googleapis.com/maps/api/geocode/json?address="+str+"&sensor=true",true);
+            xmlhttp.send();
+        }
+    }
 
 </script>
 @stop
