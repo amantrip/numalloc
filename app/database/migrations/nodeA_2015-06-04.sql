@@ -1647,5 +1647,11 @@ VALUES
 	(1494,'MO','9786','CenturyTel of Missouri, LLC (Southern) dba CenturyLink','active','0000-00-00 00:00:00','0000-00-00 00:00:00'),
 	(1495,'AK','989C','Adak Eagle Enterprise LLC dba Adak Telephone Utility','active','0000-00-00 00:00:00','0000-00-00 00:00:00');
 
+	INSERT INTO `users` (`id`, `email`, `password`, `ocn`, `assignee`, `type`, `accesscode`, `verified`, `remember_token`, `created_at`, `updated_at`)
+VALUES
+	(1,'am4227@columbia.edu','$2y$10$jK3dM0ltzmB4L9xbW6Ay.e5aTNvXTB6TvoKSlLaii0blNBKl7B7OO',0,'','system','KJd3J','Yes',NULL,'2015-05-26 02:55:33','2015-05-27 09:49:40'),
+	(4,'akhimantripragada@gmail.com','$2y$10$XrY8tuBI/.UAUASicniVyeUSv5YYsqxmvsu6mZrRCr2EWRBhfKCny',42,'China Tel. Co.','number','B7zJy','Yes',NULL,'2015-05-27 07:13:18','2015-05-27 10:09:39');
+
+
 
 
