@@ -32,7 +32,12 @@ class HomeController extends BaseController {
             }*/
             if($user->type == 'number'){
                 return Redirect::to('/numadmin');
-            }else {
+
+            }else if($user->type == 'privileged') {
+
+                return Redirect::to('/manager');
+
+            }else{
                 return Redirect::to('/system');
             }
         }
@@ -122,7 +127,13 @@ class HomeController extends BaseController {
             $current_user = Auth::user();
 
             if($current_user->type == 'number'){
+
                 return Redirect::to('/numadmin');
+
+            }else if($user->type == 'privileged') {
+
+                return Redirect::to('/manager');
+
             }else {
                 return Redirect::to('/system');
             }
@@ -159,7 +170,13 @@ class HomeController extends BaseController {
 
                     $admin->save();
                     if ($admin->type == 'number') {
+
                         return Redirect::to('/numadmin');
+
+                    }else if($admin->type == 'privileged') {
+
+                        return Redirect::to('/manager');
+
                     } else {
                         return Redirect::to('/system');
                     }

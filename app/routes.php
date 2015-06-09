@@ -26,7 +26,6 @@ Route::post('/register', 'HomeController@register');
 //OCN Routes
 Route::get('/get/ocn/{id}', 'OCNController@getOCN');
 
-//Location Route
 
 
 // Number Admin User Routes
@@ -39,8 +38,20 @@ Route::get('/numadmin/edit', 'NumberAdminController@showEditProfileView');
 Route::post('/numadmin/edit', 'NumberAdminController@editProfile');
 
 
-// Privileged Admin User Routes
+// OCN Manager or Privileged User Routes
 
+Route::get('/manager', 'OCNManagerController@showAdminView');
+
+Route::get('/manager/reset', 'OCNManagerController@showResetPasswordView');
+Route::post('/manager/reset', 'OCNManagerController@resetPassword');
+
+Route::get('/manager/edit', 'OCNManagerController@showEditProfileView');
+Route::post('/manager/edit', 'OCNManagerController@editProfile');
+
+Route::get('/manager/manage', 'OCNManagerController@showManageAdminView');
+Route::get('/manager/add', 'OCNManagerController@showAddAdminView');
+Route::post('/manager/add', 'OCNManagerController@addAdmin');
+Route::get('/manager/delete/{id}', 'OCNManagerController@deleteAdmin');
 
 
 // System Admin User Routes
@@ -102,12 +113,16 @@ Route::get('/subscriber/change', 'SubscriberController@showSubscriberChangePassw
 Route::post('/subscriber/change', 'SubscriberController@subscriberChangePassword');
 
 
+//Gossip Protocol Routes
 
+
+/*
 
 
 Route::get('/mail', function(){
    return View::make('emails.mail', ['accesscode'=> 'ABDCD' , 'role' => 'Number Admin']);
 });
+
 
 Route::get('/adduser', function(){
    User::create([
@@ -119,18 +134,7 @@ Route::get('/adduser', function(){
        'accesscode' => 'ABCDE'
    ]);
 });
-/*
 
-Route::get('/', 'HomeController@showReadView');
-Route::post('/', 'HomeController@read');
-
-
-Route::get('/update/{number}', 'HomeController@showUpdateView');
-Route::post('/update/{input_number}', 'HomeController@updateRecord');
-
-
-Route::get('/new', 'HomeController@requestNewView');
-Route::post('/new', 'HomeController@newFormView');
 
 Route::get('/addnode', function(){
 

@@ -14,6 +14,8 @@ class SystemAdminController extends \BaseController {
         #check user type and make sure the user has rights to access this page else redirect
         if($user->type == 'number'){
             return Redirect::to('/numadmin');
+        }else if($user->type == 'privileged'){
+            return Redirect::to('/manager');
         }
 
 
@@ -36,6 +38,8 @@ class SystemAdminController extends \BaseController {
         #check user type and make sure the user has rights to access this page else redirect
         if($user->type == 'number'){
             return Redirect::to('/numadmin');
+        }else if($user->type == 'privileged'){
+            return Redirect::to('/manager');
         }
 
         return View:: make('system.reset');
@@ -52,6 +56,8 @@ class SystemAdminController extends \BaseController {
         #check user type and make sure the user has rights to access this page else redirect
         if($user->type == 'number'){
             return Redirect::to('/numadmin');
+        }else if($user->type == 'privileged'){
+            return Redirect::to('/manager');
         }
 
         $admin = User:: find($user->id);
@@ -77,6 +83,8 @@ class SystemAdminController extends \BaseController {
         #check user type and make sure the user has rights to access this page else redirect
         if($user->type == 'number'){
             return Redirect::to('/numadmin');
+        }else if($user->type == 'privileged'){
+            return Redirect::to('/manager');
         }
 
         return View::make('system.edit', ['admin' => $user]);
@@ -114,6 +122,8 @@ class SystemAdminController extends \BaseController {
         #User must be of Admin type to be able to manage other admin
         if($user->type == 'numadmin'){
             return Redirect::to('/numadmin');
+        }else if($user->type == 'privileged'){
+            return Redirect::to('/manager');
         }
 
         $admins = User:: all();
@@ -133,6 +143,8 @@ class SystemAdminController extends \BaseController {
         #User must be of System Admin type to be able to manage other admin
         if($user->type == 'numadmin'){
             return Redirect::to('/numadmin');
+        }else if($user->type == 'privileged'){
+            return Redirect::to('/manager');
         }
 
         return View::make('system.add');
@@ -146,6 +158,8 @@ class SystemAdminController extends \BaseController {
         #check user type and make sure the user has rights to access this page else redirect
         if($user->type == 'number'){
             return Redirect::to('/numadmin');
+        }else if($user->type == 'privileged'){
+            return Redirect::to('/manager');
         }
 
         #Check if an admin user with the input email already exists
@@ -175,7 +189,10 @@ class SystemAdminController extends \BaseController {
 
         if($type == 'number'){
             $role = 'Number Admin';
-        }else{
+        }else if($type == 'privileged'){
+            $role = 'OCN Manager';
+        }
+        else{
             $role = 'System Admin';
         }
 
@@ -212,7 +229,7 @@ class SystemAdminController extends \BaseController {
 
         #User must be of Admin type to be able to manage other admin
 
-        if($user->type == 'number'){
+        if($user->type == 'number' || $user->type == 'privileged'){
             Session::flash('error_message', "You Don't have access rights to Delete Admin");
             return Redirect::back();
         }
@@ -236,6 +253,8 @@ class SystemAdminController extends \BaseController {
         #check user type and make sure the user has rights to access this page else redirect
         if($user->type == 'number'){
             return Redirect::to('/numadmin');
+        }else if($user->type == 'privileged'){
+            return Redirect::to('/manager');
         }
 
         $ocns = OCN::all();
@@ -255,6 +274,8 @@ class SystemAdminController extends \BaseController {
         #check user type and make sure the user has rights to access this page else redirect
         if($user->type == 'number'){
             return Redirect::to('/numadmin');
+        }else if($user->type == 'privileged'){
+            return Redirect::to('/manager');
         }
 
         return View::make('system.addocn');
@@ -272,6 +293,8 @@ class SystemAdminController extends \BaseController {
         #check user type and make sure the user has rights to access this page else redirect
         if($user->type == 'number'){
             return Redirect::to('/numadmin');
+        }else if($user->type == 'privileged'){
+            return Redirect::to('/manager');
         }
 
 
@@ -293,6 +316,8 @@ class SystemAdminController extends \BaseController {
         #check user type and make sure the user has rights to access this page else redirect
         if($user->type == 'number'){
             return Redirect::to('/numadmin');
+        }else if($user->type == 'privileged'){
+            return Redirect::to('/manager');
         }
 
         $areacodes = AreaCode::all();
@@ -312,6 +337,8 @@ class SystemAdminController extends \BaseController {
         #check user type and make sure the user has rights to access this page else redirect
         if($user->type == 'number'){
             return Redirect::to('/numadmin');
+        }else if($user->type == 'privileged'){
+            return Redirect::to('/manager');
         }
 
         return View::make('system.addareacode');
@@ -329,6 +356,8 @@ class SystemAdminController extends \BaseController {
         #check user type and make sure the user has rights to access this page else redirect
         if($user->type == 'number'){
             return Redirect::to('/numadmin');
+        }else if($user->type == 'privileged'){
+            return Redirect::to('/manager');
         }
 
 

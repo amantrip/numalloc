@@ -23,34 +23,32 @@
 
 @section('sidebar')
     <ul id="dashboard-menu">
-            <li class="">
-                <a href="/">
-                    <i class="icon-home"></i>
-                    <span>Home</span>
-                </a>
-            </li>
-            <li class="active">
-                <div class="pointer">
-                    <div class="arrow"></div>
-                    <div class="arrow_border"></div>
-                </div>
-                <a class="dropdown-toggle" href="#">
-                    <i class="icon-user"></i>
-                    <span>Admin</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="active submenu">
-                    <li><a href="/system" class="">Number List</a></li>
-                    <li><a href="/number/create">Add New Number</a></li>
-                    <li><a href="/number/port">Port Number</a></li>
-                    <li><a href="/system/ocns" class="">OCN List</a></li>
-                    <li><a href="/system/areacodes" class="">Area Codes</a></li>
-                    <li><a href="/system/manage" class="active">Manage System and Number Admins</a></li>
-                    <li><a href="/system/reset">Reset Password</a></li>
-                    <li><a href="/system/edit" class="">Edit Profile</a></li>
-                </ul>
-            </li>
-        </ul>
+        <li class="">
+            <a href="/">
+                <i class="icon-home"></i>
+                <span>Home</span>
+            </a>
+        </li>
+        <li class="active">
+            <div class="pointer">
+                <div class="arrow"></div>
+                <div class="arrow_border"></div>
+            </div>
+            <a class="dropdown-toggle" href="#">
+                <i class="icon-user"></i>
+                <span>OCN Manager</span>
+                <i class="icon-chevron-down"></i>
+            </a>
+            <ul class="active submenu">
+                <li><a href="/manager" class="">Number List</a></li>
+                <li><a href="/number/create">Add New Number</a></li>
+                <li><a href="/number/port">Port A Number</a></li>
+                <li><a href="/manager/manage" class="active">Manage Admin</a></li>
+                <li><a href="/manager/reset">Reset Password</a></li>
+                <li><a href="/manager/edit" class="">Edit Profile</a></li>
+            </ul>
+        </li>
+    </ul>
 @stop
 
 @section('content')
@@ -69,7 +67,7 @@
                         {{Session::get('error_message')}}
                     </div>
                 @endif
-                {{ Form:: open(['action' => 'SystemAdminController@addAdmin', 'class' => 'form-horizontal']) }}
+                {{ Form:: open(['action' => 'OCNManagerController@addAdmin', 'class' => 'form-horizontal']) }}
                     <div class="form-group">
                         {{ Form:: label('email', 'Email', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
@@ -79,9 +77,9 @@
                     <div class="form-group FIELD-BOX">
                         {{ Form:: label('type', 'Type', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            <label class="radio">{{ Form:: radio('type', 'system', false) }}System Admin</label>
                             <label class="radio">{{ Form:: radio('type', 'privileged', false) }}OCN Manager</label>
-                            <label class="radio">{{ Form:: radio('type', 'number', true) }} OCN Number Admin</label>
+
+                            <label class="radio">{{ Form:: radio('type', 'number', true) }}OCN Number Admin</label>
                         </div>
                     </div>
 
@@ -89,7 +87,7 @@
                         <div class="col-md-offset-2 col-md-8">
                             <!--<button type="submit" class="btn btn-default">Sign in</button>-->
                             {{ Form:: submit('Submit', ['class' => 'btn btn-flat success']) }}
-                            <a class="btn btn-flat" href="/system/manage">Cancel</a>
+                            <a class="btn btn-flat" href="/manager/manage">Cancel</a>
                         </div>
                     </div>
             </div>
