@@ -17,7 +17,7 @@ class AreaCodeController extends \BaseController {
             'code'   => Input::get('code'),
         ]);
 
-        Session::flash('success_message', "Area Code successfully added!");
+        Session::flash('success_message', "Area code successfully added.");
         return Redirect::to('/system/areacodes');
 
     }
@@ -32,7 +32,7 @@ class AreaCodeController extends \BaseController {
 
         $areacode->save();
 
-        Session::flash('success_message', "Area code successfully edited!");
+        Session::flash('success_message', "Area code successfully edited.");
         return Redirect::to('/system/areacodes');
     }
 

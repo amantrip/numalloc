@@ -78,13 +78,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form:: label('cnam', 'CNAM', ['class' => 'col-md-2 control-label']) }}
+                        {{ Form:: label('cnam', 'Caller Name', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
                             {{ Form:: input('text', 'cnam', $number->cnam, ['class' => 'form-control', 'required']) }}
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form:: label('pin', 'Porting Pin', ['class' => 'col-md-2 control-label']) }}
+                        {{ Form:: label('pin', 'Porting PIN', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
                             {{ Form:: input('password', 'pin', null, ['class' => 'form-control', 'required']) }}
 

@@ -32,7 +32,7 @@ class SubscriberController extends \BaseController {
                 Session::put('number', $number_correct);
 
             } else {
-                Session::flash('error_message', 'Incorrect Password');
+                Session::flash('error_message', 'Incorrect password.');
                 return Redirect::back()->withInput();
             }
         }else{
@@ -81,7 +81,7 @@ class SubscriberController extends \BaseController {
 
         }else{ # This user does not exist, ask them to register first
 
-            $message = "Your phone is not registered! Please register this number before accessing.";
+            $message = "This phone number is not registered. Please contact your carrier.";
             Session::flash('error_message', $message);
             return Redirect::back()->withInput();
 
@@ -108,7 +108,7 @@ class SubscriberController extends \BaseController {
 
         if($password != $repassword || $accesscode != $number->accesscode){
 
-            $message = "Passwords Do no match And/OR Accesscode does not match!";
+            $message = "Passwords do no match and/or accesscode does not match.";
 
             Session::flash('error_message', $message);
             return Redirect::back()->withInput();
@@ -119,7 +119,7 @@ class SubscriberController extends \BaseController {
             $number->save();
         }
 
-        Session::flash('success_message', "Password Reset, Please login");
+        Session::flash('success_message', "Password reset, please login");
         return Redirect::to('/subscriber/login');
 
     }
@@ -149,13 +149,13 @@ class SubscriberController extends \BaseController {
         }
 
         if($number->pin !== Input::get('pin')){
-            $comment = "Changed Pin Value by Subscriber";
+            $comment = "Changed PIN value by subscriber";
             static::addToLog($number->number, $comment, 'edit');
             $number->pin = Hash::make(Input::get('pin'));
         }
 
         $number->save();
-        Session::flash('success_message', 'Edit Saved!');
+        Session::flash('success_message', 'Edit saved.');
         return Redirect::to('/subscriber');
     }
 
@@ -190,11 +190,11 @@ class SubscriberController extends \BaseController {
             $number->password = Hash::make(Input::get('newpassword'));
             $number->save();
 
-            Session::flash('success_message', 'Password Reset Successful!');
+            Session::flash('success_message', 'Password reset successful.');
             return Redirect::to('/subscriber');
         }
 
-        Session::flash('error_message', 'Passwords Entered Do Not Match! Please Re-Try!');
+        Session::flash('error_message', 'Passwords entered do not match. Please re-try!');
         return Redirect::back();
 
 

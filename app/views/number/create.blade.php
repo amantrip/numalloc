@@ -137,13 +137,13 @@
                     <div class="form-group">
                         {{ Form:: label('alt_spid', 'Alternate SPID', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'alt_spid', null, ['class' => 'form-control', 'onkeyup' =>"showOCN2(this.value)",  'required']) }}
+                            {{ Form:: input('text', 'alt_spid', null, ['class' => 'form-control', 'onkeyup' =>"showOCN2(this.value)"]) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form:: label('alt_spid_text', 'Alternate SPID Information', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
-                            {{ Form:: input('text', 'alt_spid_text', null, ['class' => 'form-control', 'id' =>"assignee2", "readonly" => "readonly",  'required']) }}
+                            {{ Form:: input('text', 'alt_spid_text', null, ['class' => 'form-control', 'id' =>"assignee2", "readonly" => "readonly"]) }}
                         </div>
                     </div>
                     <div class="form-group">

@@ -28,7 +28,7 @@ class OCNController extends \BaseController {
             'type' => Input::get('type')
         ]);
 
-        Session::flash('success_message', "OCN successfully added!");
+        Session::flash('success_message', "OCN successfully added.");
         return Redirect::to('/system/ocns');
 
     }
@@ -44,7 +44,7 @@ class OCNController extends \BaseController {
 
         $ocn->save();
 
-        Session::flash('success_message', "OCN successfully edited!");
+        Session::flash('success_message', "OCN successfully edited.");
         return Redirect::to('/system/ocns');
 
 

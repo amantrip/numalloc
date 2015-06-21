@@ -46,7 +46,7 @@ class NumberController extends \BaseController {
             return Redirect::to('/number/create/form/'.$number );
         }
 
-        Session::flash('error_message', 'Number not available or Number incorrect');
+        Session::flash('error_message', 'Number not available or number incorrect.');
         return Redirect::back()->withInput();
 
     }
@@ -67,7 +67,7 @@ class NumberController extends \BaseController {
 
         if($count == 0 || $info->cnam != NULL){
 
-            Session::flash('error_message', 'Number already allotted!');
+            Session::flash('error_message', 'Number already allotted.');
             return Redirect::to('/system');
 
         }
@@ -89,7 +89,7 @@ class NumberController extends \BaseController {
 
         if(Input::get('assignee') == "undefined" || Input::get("alt_spid_text") == "undefined"){
 
-            Session::flash('error_message', 'OCN/Alt SPID Undefined! Please re-try with a valid OCN');
+            Session::flash('error_message', 'OCN/Alt SPID undefined. Please re-try with a valid OCN.');
             return Redirect::back()->withInput();
 
         }
@@ -119,7 +119,7 @@ class NumberController extends \BaseController {
         }
         $number->save();
 
-        Session::flash('success_message', 'Number Allocated and Saved!');
+        Session::flash('success_message', 'The number has been allocated.');
         if($user->type == 'number'){
             return Redirect::to('/numadmin');
         }else {
@@ -151,7 +151,7 @@ class NumberController extends \BaseController {
 
         if(Input::get('assignee') == "undefined" || Input::get("alt_spid_text") == "undefined"){
 
-            Session::flash('error_message', 'OCN/Alt SPID Undefined! Please re-try with a valid OCN');
+            Session::flash('error_message', 'OCN/Alt SPID undefined. Please re-try with a valid OCN');
             return Redirect::back()->withInput();
 
         }
@@ -256,7 +256,7 @@ class NumberController extends \BaseController {
         $number->save();
 
 
-        Session::flash('success_message', 'Edit Saved!');
+        Session::flash('success_message', 'Edit saved.');
         $user = Auth::user();
         if($user->type == 'number'){
             return Redirect::to('/numadmin');
@@ -333,7 +333,7 @@ class NumberController extends \BaseController {
             }
         }
 
-        Session::flash('error_message', 'Number Not Allotted/Incorrect PIN/ OCN cannot be 0');
+        Session::flash('error_message', 'Number not allotted/Incorrect PIN/ OCN cannot be 0');
         return Redirect::back()->withInput();
 
     }

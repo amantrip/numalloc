@@ -30,10 +30,11 @@
             <!--<h3>Features <span>(Option 3)</span></h3>-->
         </div>
         <div class="row subtitle">
-            <h2>
+            <!--<h2>
                Number Allocation Project: Please login as a Subscriber or Admin User to allocate new numbers, edit existing numbers or port numbers.
 
-            </h2>
+            </h2> -->
+            <h2></h2>
         </div>
 
         <!-- Features Row -->

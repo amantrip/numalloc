@@ -55,11 +55,11 @@ class OCNManagerController extends \BaseController {
             $admin->password = Hash::make(Input::get('newpassword'));
             $admin->save();
 
-            Session::flash('success_message', 'Password Reset Successful!');
+            Session::flash('success_message', 'Password reset successful.');
             return Redirect::to('/manager');
         }
 
-        Session::flash('error_message', 'Passwords Entered Do Not Match! Please Re-Try!');
+        Session::flash('error_message', 'Passwords entered do not match. Please re-try!');
         return Redirect::back();
 
     }
@@ -93,7 +93,7 @@ class OCNManagerController extends \BaseController {
 
         if(Input::get('ocn') == "0"){
 
-            Session::flash('error_message', 'OCN cannot be zero!');
+            Session::flash('error_message', 'OCN cannot be zero.');
             return Redirect::back()->withInput();
 
         }
@@ -102,7 +102,7 @@ class OCNManagerController extends \BaseController {
         $user->assignee = Input::get('assignee');
         $user->save();
 
-        Session::flash('success_message', 'Edit Saved!');
+        Session::flash('success_message', 'Edit saved.');
         return Redirect::to('/manager');
 
     }
@@ -160,7 +160,7 @@ class OCNManagerController extends \BaseController {
 
         #Check if an admin user with the input email already exists
         if(User::where('email', '=', Input::get('email'))->count() > 0){
-            Session::flash('error_message', 'Fatal Error! Admin with this email already exists!');
+            Session::flash('error_message', 'Fatal Error! Admin with this email already exists.');
             return Redirect::back();
         }
 
@@ -225,7 +225,7 @@ class OCNManagerController extends \BaseController {
         #User must be of Admin type to be able to manage other admin
 
         if($user->type == 'number'){
-            Session::flash('error_message', "You Don't have access rights to Delete Admin");
+            Session::flash('error_message', "You don't have access rights to delete an Admin");
             return Redirect::back();
         }
 
@@ -233,7 +233,7 @@ class OCNManagerController extends \BaseController {
         $admin = User::find($id);
         $admin->delete();
 
-        Session::flash('success_message', "Admin successfully deleted!");
+        Session::flash('success_message', "Admin successfully deleted.");
         return Redirect::to('/manager/manage');
     }
 

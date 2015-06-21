@@ -51,7 +51,7 @@ class NumberAdminController extends \BaseController {
             return Redirect::to('/numadmin');
         }
 
-        Session::flash('error_message', 'Passwords Entered Do Not Match! Please Re-Try!');
+        Session::flash('error_message', 'Passwords entered do not match. Please re-try!');
         return Redirect::back();
 
     }
@@ -76,7 +76,7 @@ class NumberAdminController extends \BaseController {
 
         if(Input::get('ocn') == "0"){
 
-            Session::flash('error_message', 'OCN cannot be zero!');
+            Session::flash('error_message', 'OCN cannot be zero.');
             return Redirect::back()->withInput();
 
         }
@@ -85,7 +85,7 @@ class NumberAdminController extends \BaseController {
         $user->assignee = Input::get('assignee');
         $user->save();
 
-        Session::flash('success_message', 'Edit Saved!');
+        Session::flash('success_message', 'Edit saved.');
         return Redirect::to('/numadmin');
 
     }

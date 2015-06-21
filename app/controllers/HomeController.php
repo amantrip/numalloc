@@ -42,7 +42,7 @@ class HomeController extends BaseController {
             }
         }
 
-        Session::flash('error_message', 'Invalid Email or Password');
+        Session::flash('error_message', 'Invalid email or password!');
         return Redirect::back()->withInput();
     }
 
@@ -82,13 +82,13 @@ class HomeController extends BaseController {
                     ->subject($email_data['subject']);
             });
 
-            $message = "Please check your email for access code and password link";
+            $message = "Please check your email for access code and password link.";
             Session::flash('success_message', $message);
             return Redirect::back();
 
         }else{ # This user does not exist, ask them to register first
 
-            $message = "Your email is not registered! Please email our admin to receive an access code.";
+            $message = "Your email ID is not registered! Please email our admin to receive an access code.";
             Session::flash('error_message', $message);
             return Redirect::back()->withInput();
 
@@ -111,7 +111,7 @@ class HomeController extends BaseController {
 
         if($password != $repassword || $accesscode != $user->accesscode){
 
-            $message = "Passwords Do no match And/OR Accesscode does not match!";
+            $message = "Passwords do not match and/or accesscode does not match!";
 
             Session::flash('error_message', $message);
             return Redirect::back()->withInput();
@@ -182,15 +182,15 @@ class HomeController extends BaseController {
                     }
 
                 } else { #access code did not match
-                    $message = $message . "Access Code did not match! ";
+                    $message = $message . "Access code does not match with our records. ";
                 }
             }else{ #already verified
-                $message = $message."This account has already been verified! ";
+                $message = $message."This account has already been verified.";
             }
 
         }else{ # Email is not registered
 
-            $message = $message.'Email not registered with Num-Alloc';
+            $message = $message.'Email ID is not registered with Num-Alloc.';
 
         }
         # Send an error message
