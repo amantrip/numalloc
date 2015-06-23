@@ -28,6 +28,7 @@ class CreateNumbersTable extends Migration {
             $table->enum('type', ['mobile', 'landline']);
             $table->string('pin');
             $table->string('password');
+            $table->string('gusi');
             $table->string('accesscode');
             $table->timestamps();
 		});

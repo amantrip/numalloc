@@ -84,6 +84,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        {{ Form:: label('gsui', 'Globally-Unique Subscriber ID', ['class' => 'col-md-2 control-label']) }}
+                        <div class="col-md-8">
+                            {{ Form:: input('text', 'gusi', $number->gusi, ['class' => 'form-control' , 'readonly' => 'readonly', 'required']) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
                         {{ Form:: label('pin', 'Porting PIN', ['class' => 'col-md-2 control-label']) }}
                         <div class="col-md-8">
                             {{ Form:: input('password', 'pin', null, ['class' => 'form-control', 'required']) }}

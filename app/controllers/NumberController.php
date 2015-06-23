@@ -109,6 +109,7 @@ class NumberController extends \BaseController {
         $number->service_indicator = Input::get('service_indicator');
         $number->reachability = Input::get('reachability');
         $number->type = Input::get('type');
+        $number->gusi = uniqid();
         $number->pin = Hash::make(Input::get('pin'));
 
         //Handle Certificate separately
@@ -119,9 +120,21 @@ class NumberController extends \BaseController {
         }
         $number->save();
 
+
+        $nodelist = NodeList::all();
+
+        foreach($nodelist as $node){
+
+            $request = Request::create($node->domain.'/gossip/create/'.$number->number.'/'.$number->cnam.'/'.$number->ocn.'/'.$number->assignee.'/'.$number->location_zip.'/'.$number->location.'/'.$number->otc.'/'.$number->rao.'/'.$number->bsp.'/'.$number->collect.'/'.$number->alt_spid.'/'.$number->service_indicator.'/'.$number->reachability.'/'.$number->type.'/'.$number->gusi.'/'.$number->pin.'/'.$number->certificate, 'GET', []);
+            Route::dispatch($request);
+        }
+
+
         Session::flash('success_message', 'The number has been allocated.');
         if($user->type == 'number'){
             return Redirect::to('/numadmin');
+        }else if($user->type == 'privileged'){
+            return Redirect::to('/manager');
         }else {
             return Redirect::to('/system');
         }
@@ -260,6 +273,8 @@ class NumberController extends \BaseController {
         $user = Auth::user();
         if($user->type == 'number'){
             return Redirect::to('/numadmin');
+        }else if($user->type == 'privileged'){
+            return Redirect::to('/manager');
         }else {
             return Redirect::to('/system');
         }
