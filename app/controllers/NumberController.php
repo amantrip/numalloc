@@ -124,8 +124,8 @@ class NumberController extends \BaseController {
         $nodelist = NodeList::all();
 
         foreach($nodelist as $node){
-
-            $request = Request::create($node->domain.'/gossip/create/'.$number->number.'/'.$number->cnam.'/'.$number->ocn.'/'.$number->assignee.'/'.$number->location_zip.'/'.$number->location.'/'.$number->otc.'/'.$number->rao.'/'.$number->bsp.'/'.$number->collect.'/'.$number->alt_spid.'/'.$number->service_indicator.'/'.$number->reachability.'/'.$number->type.'/'.$number->gusi.'/'.$number->pin.'/'.$number->certificate, 'GET', []);
+            $link = $node->domain.'gossip/create/'.$number->number.'/'.$number->cnam.'/'.$number->ocn.'/'.$number->assignee.'/'.$number->location_zip.'/'.$number->location.'/'.$number->otc.'/'.$number->rao.'/'.$number->bsp.'/'.$number->collect.'/'.$number->alt_spid.'/'.$number->service_indicator.'/'.$number->reachability.'/'.$number->type.'/'.$number->gusi.'/'.$number->pin.'/'.$number->certificate;
+            $request = Request::create($link, 'GET', []);
             Route::dispatch($request);
         }
 
