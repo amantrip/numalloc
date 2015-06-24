@@ -117,7 +117,7 @@ Route::post('/subscriber/change', 'SubscriberController@subscriberChangePassword
 
 //Route::get('/gossip/create/{number}/{cnam}/{ocn}/{assignee}/{location_zip}/{location}/{otc}/{rao}/{bsp}/{collect}/{alt_spid}/{service_indicator}/{reachability}/{type}/{gusi}/{pin}/{certificate}', 'GossipController@createNumber');
 
-Route::post('/gossip/create');
+Route::post('/gossip/create', 'GossipController@createNumber');
 
 
 Route::get('/gossip/edit/{number}/{cnam}/{ocn}/{assignee}/{location_zip}/{location}/{otc}/{rao}/{bsp}/{collect}/{alt_spid}/{service_indicator}/{reachability}/{type}/{gusi}/{pin}', 'GossipController@editNumber');
