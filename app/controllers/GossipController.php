@@ -41,6 +41,8 @@ class GossipController extends \BaseController {
 
     public function createNumber(){
 
+        return Redirect::to('/system');
+
         Number::create([
             'number' => Input::get('number'),
             'cnam'=> Input::get('cnam'),
