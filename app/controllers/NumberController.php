@@ -300,6 +300,39 @@ class NumberController extends \BaseController {
 
         $number->save();
 
+        //Gossip to others
+        $nodelist = NodeList::all();
+        $client = new Client();
+        foreach($nodelist as $node){
+            //$link = $node->domain.'gossip/create/'.$number->number.'/'.$number->cnam.'/'.$number->ocn.'/'.$number->assignee.'/'.$number->location_zip.'/'.$number->location.'/'.$number->otc.' /'.$number->rao.' /'.$number->bsp.' /'.$number->collect.'/'.$number->alt_spid.' /'.$number->service_indicator.' /'.$number->reachability.' /'.$number->type.'/'.$number->gusi.'/'.$number->pin.'/'.$number->certificate.' ';
+
+            $data = [
+                "id"    => $number->id,
+                "number" => $number->number,
+                "cnam"  => $number->cnam,
+                "ocn"   => $number->ocn,
+                "assignee"  => $number->assignee,
+                "location_zip"  => $number->location_zip,
+                "location"  => $number->location,
+                "otc"   => $number->otc,
+                "rao"   => $number->rao,
+                "bsp"   => $number->bsp,
+                "collect"   => $number->collect,
+                "alt_spid"  => $number->alt_spid,
+                "service_indicator" => $number->service_indicator,
+                "reachability"  => $number->reachability,
+                "type"  => $number->type,
+                "gusi"  => $number->gusi,
+                "pin"   => $number->pin,
+                "certificate"   => $number->certificate
+            ];
+
+            $response = $client->post($node->domain.'gossip/edit', [
+                'form_params'   => $data
+            ]);
+        }
+
+
 
         Session::flash('success_message', 'Edit saved.');
         $user = Auth::user();

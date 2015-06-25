@@ -94,7 +94,113 @@ class GossipController extends \BaseController {
 
     public function editNumber(){
 
+        $number = Number::find(Input::get('id'));
+
+        if($number->cnam !== Input::get('cnam')){
+            $comment = "CNAM: ".$number->cnam." &#8594; ".Input::get('cnam');
+            static::addToLog($number->number, $comment, 'edit');
+            $number->cnam = Input::get('cnam');
+        }
+
+        if($number->ocn !== Input::get('ocn')){
+
+            $comment = "OCN: ".$number->ocn." &#8594; ".Input::get('ocn');
+            static::addToLog($number->number, $comment, 'edit');
+            $number->ocn = Input::get('ocn');
+        }
+
+
+        if($number->assignee !== Input::get('assignee')){
+            $comment = "Assignee: ".$number->assignee." &#8594; ".Input::get('assignee');
+            static::addToLog($number->number, $comment, 'edit');
+            $number->assignee = Input::get('assignee');
+        }
+
+        if($number->location_zip !== Input::get('location_zip')){
+            $comment = "Zip: ".$number->location_zip." &#8594; ".Input::get('location_zip');
+            static::addToLog($number->number, $comment, 'edit');
+            $number->location_zip = Input::get('location_zip');
+        }
+
+        if($number->location !== Input::get('location')){
+            $comment = "Location: ".$number->location." &#8594; ".Input::get('location');
+            static::addToLog($number->number, $comment, 'edit');
+            $number->location= Input::get('location');
+        }
+
+        if($number->otc !== Input::get('otc')){
+            $comment = "OTC: ".$number->otc." &#8594; ".Input::get('otc');
+            static::addToLog($number->number, $comment, 'edit');
+            $number->otc= Input::get('otc');
+        }
+
+        if($number->rao !== Input::get('rao')){
+            $comment = "RAO: ".$number->rao." &#8594; ".Input::get('rao');
+            static::addToLog($number->number, $comment, 'edit');
+            $number->rao = Input::get('rao');
+        }
+
+        if($number->bsp !== Input::get('bsp')){
+            $comment = "BSP: ".$number->bsp." &#8594; ".Input::get('bsp');
+            static::addToLog($number->number, $comment, 'edit');
+            $number->bsp = Input::get('bsp');
+        }
+
+        if($number->collect !== Input::get('collect')){
+            $comment = "Collect: ".$number->collect." &#8594; ".Input::get('collect');
+            static::addToLog($number->number, $comment, 'edit');
+            $number->collect = Input::get('collect');
+        }
+
+        if($number->alt_spid !== Input::get('alt_spid')){
+            $comment = "Alt SPID: ".$number->alt_spid." &#8594; ".Input::get('alt_spid');
+            static::addToLog($number->number, $comment, 'edit');
+            $number->alt_spid = Input::get('alt_spid');
+        }
+
+        if($number->service_indicator !== Input::get('service_indicator')){
+            $comment = "Service Indicator: ".$number->service_indicator." &#8594; ".Input::get('service_indicator');
+            static::addToLog($number->number, $comment, 'edit');
+            $number->service_indicator = Input::get('service_indicator');
+        }
+
+        if($number->reachability !== Input::get('reachability')){
+            $comment = "Reachability: ".$number->reachability." &#8594; ".Input::get('reachability');
+            static::addToLog($number->number, $comment, 'edit');
+            $number->reachability = Input::get('reachability');
+        }
+
+        if($number->type !== Input::get('type')){
+            $comment = "Type: ".$number->type." &#8594; ".Input::get('type');
+            static::addToLog($number->number, $comment, 'edit');
+            $number->type = Input::get('type');
+        }
+
+        if($number->certificate !== Input::get('certificate')){
+            $comment = "Certificate changed.";
+            static::addToLog($number->number, $comment, 'edit');
+            $number->certificate = Input::get('certificate');
+        }
+
+
+        if($number->pin != Input::get('pin')){
+            $comment = "Changed PIN";
+            static::addToLog($number->number, $comment, 'edit');
+            $number->pin = Input::get('pin');
+        }
+
+        $number->save();
+
+        return "ok";
     }
 
+    private function addToLog($number, $comment, $type){
+        NumLog::create([
+            'number' => $number,
+            'type'  => $type,
+            'description' => $comment
+        ]);
 
+        return 0;
+    }
 }
