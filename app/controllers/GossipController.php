@@ -94,7 +94,9 @@ class GossipController extends \BaseController {
 
     public function editNumber(){
 
-        $number = Number::find(Input::get('id'));
+        //$number = Number::find(Input::get('id'));
+
+        $number = Number::where('number', '=', Input::get('number'))->first();
 
         if($number->cnam !== Input::get('cnam')){
             $comment = "CNAM: ".$number->cnam." &#8594; ".Input::get('cnam');
