@@ -67,6 +67,7 @@ class GossipController extends \BaseController {
 
         $number->save();
 
+        return "ok";
 
     }
 
