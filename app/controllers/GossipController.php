@@ -42,10 +42,26 @@ class GossipController extends \BaseController {
     public function createNumber(){
 
         Number::create([
-            'number' => Input::get('number')
+            'number' => Input::get('number'),
+            'cnam'=> Input::get('cnam'),
+            'ocn' => Input::get('ocn'),
+            'assignee' => Input::get('assignee'),
+            'location_zip' => Input::get('location_zip'),
+            'location' => Input::get('location'),
+            'otc' => Input::get('otc'),
+            'rao'=> Input::get('rao'),
+            'bsp' => Input::get('bsp'),
+            'collect' => Input::get('collect'),
+            'alt_spid' => Input::get('alt_spid'),
+            'service_indicator' => Input::get('service_indicator'),
+            'reachability' => Input::get('reachability'),
+            'type' => Input::get('type'),
+            'gusi' => Input::get('gusi'),
+            'pin' => Input::get('pin'),
+            'certifcate' => Input::get('certificate')
         ]);
 
-        $number = Number::where('number', '=', Input::get('number'))->first();
+        /*$number = Number::where('number', '=', Input::get('number'))->first();
 
 
         $number->cnam= Input::get('cnam');
@@ -65,7 +81,7 @@ class GossipController extends \BaseController {
         $number->pin = Input::get('pin');
         $number->certifcate = Input::get('certificate');
 
-        $number->save();
+        $number->save(); */
 
         return "ok";
 
