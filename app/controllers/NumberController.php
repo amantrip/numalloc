@@ -127,7 +127,7 @@ class NumberController extends \BaseController {
         foreach($nodelist as $node){
             //$link = $node->domain.'gossip/create/'.$number->number.'/'.$number->cnam.'/'.$number->ocn.'/'.$number->assignee.'/'.$number->location_zip.'/'.$number->location.'/'.$number->otc.' /'.$number->rao.' /'.$number->bsp.' /'.$number->collect.'/'.$number->alt_spid.' /'.$number->service_indicator.' /'.$number->reachability.' /'.$number->type.'/'.$number->gusi.'/'.$number->pin.'/'.$number->certificate.' ';
 
-            $request = $client->post($node.'gossip/create', [], [
+            $data = [
                 "number" => $number->number,
                 "cnam"  => $number->cname,
                 "ocn"   => $number->ocn,
@@ -143,13 +143,18 @@ class NumberController extends \BaseController {
                 "reachability"  => $number->reachability,
                 "type"  => $number->type,
                 "gusi"  => $number->gusi,
-                "pin"   => $number->pin
+                "pin"   => $number->pin,
+                "certificate"   => $number->certificate
+            ];
 
+            $response = $client->post($node->domain.'gossip/create', [
+                'form_params'   => $data
             ]);
-            $response = $request->send();
+            //$response = $client->post($node->domain.'gossip/create', null, $data, null);
+            //var_dump($response->getStatusCode());
 
 
-            return $response;
+            //return $response;
 
             //return $link;
             //$request = Request::create($link, 'GET', []);

@@ -63,6 +63,8 @@ class GossipController extends \BaseController {
             'certifcate' => Input::get('certificate')
         ]);
 
+        /*
+
         /*$number = Number::where('number', '=', Input::get('number'))->first();
 
 
@@ -84,7 +86,7 @@ class GossipController extends \BaseController {
         $number->certifcate = Input::get('certificate');
 
         $number->save(); */
-        return Redirect::to('/system');
+        //return Redirect::to('/system');
         return "ok";
 
     }
