@@ -41,7 +41,7 @@ class GossipController extends \BaseController {
 
     public function createNumber(){
 
-        return Redirect::to('/system');
+
 
         Number::create([
             'number' => Input::get('number'),
@@ -84,7 +84,7 @@ class GossipController extends \BaseController {
         $number->certifcate = Input::get('certificate');
 
         $number->save(); */
-
+        return Redirect::to('/system');
         return "ok";
 
     }
