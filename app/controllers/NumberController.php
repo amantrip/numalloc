@@ -129,7 +129,7 @@ class NumberController extends \BaseController {
 
             $data = [
                 "number" => $number->number,
-                "cnam"  => $number->cname,
+                "cnam"  => $number->cnam,
                 "ocn"   => $number->ocn,
                 "assignee"  => $number->assignee,
                 "location_zip"  => $number->location_zip,
