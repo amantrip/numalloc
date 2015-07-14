@@ -233,10 +233,14 @@
             if (xmlhttp.readyState==4 && xmlhttp.status==200) {
                 var jsonObj = JSON.parse(xmlhttp.responseText);
                 document.getElementById("location").value=jsonObj.results[0].formatted_address;
-                //document.getElementById("location").value = jsonObj.city + " "+ jsonObj.state;
+
+                //document.getElementById("location").value = jsonObj.city;
             }
         }
-            xmlhttp.open("GET","http://maps.googleapis.com/maps/api/geocode/json?address="+str+"&region=us",true);
+            xmlhttp.open("GET","http://maps.googleapis.com/maps/api/geocode/json?address="+str+"&region=US",true);
+            //xmlhttp.open("GET", "https://www.zipcodeapi.com/rest/VNwWlUOZeDRQsVhcgKTDkjTifpvHB4yxR4udZicdW43p0lCg5vUqPOI4deMOikl9/info.json/"+str+"/degrees", true);
+            //xmltttp.open("GET", "http://production.shippingapis.com/ShippingAPITest.dll?API=CityStateLookup&XML=" +
+            // "");
             xmlhttp.send();
         }
     }

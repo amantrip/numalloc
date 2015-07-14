@@ -183,6 +183,7 @@
                 <li><a href="/system/manage">Manage System and Number Admins</a></li>
                 <li><a href="/system/reset">Reset Password</a></li>
                 <li><a href="/system/edit">Edit Profile</a></li>
+                <li><a href="/apikeys" class="">API Keys</a></li>
             </ul>
         </li>
     </ul>

@@ -181,6 +181,7 @@
                 <li><a href="/manager/manage">Manage Admin</a></li>
                 <li><a href="/manager/reset">Reset Password</a></li>
                 <li><a href="/manager/edit" class="">Edit Profile</a></li>
+                <li><a href="/apikeys" class="">API Keys</a></li>
             </ul>
         </li>
     </ul>

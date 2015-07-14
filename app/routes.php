@@ -113,18 +113,44 @@ Route::get('/subscriber/change', 'SubscriberController@showSubscriberChangePassw
 Route::post('/subscriber/change', 'SubscriberController@subscriberChangePassword');
 
 
-//Gossip Protocol Routes
-
-//Route::get('/gossip/create/{number}/{cnam}/{ocn}/{assignee}/{location_zip}/{location}/{otc}/{rao}/{bsp}/{collect}/{alt_spid}/{service_indicator}/{reachability}/{type}/{gusi}/{pin}/{certificate}', 'GossipController@createNumber');
+//Gossip Protocol Routes and Shared with API
 
 Route::post('/gossip/create', 'GossipController@createNumber');
-
 Route::post('/gossip/edit', 'GossipController@editNumber');
-//Route::get('/gossip/edit/{number}/{cnam}/{ocn}/{assignee}/{location_zip}/{location}/{otc}/{rao}/{bsp}/{collect}/{alt_spid}/{service_indicator}/{reachability}/{type}/{gusi}/{pin}', 'GossipController@editNumber');
+
+//API Key Routes
+
+Route::get('/apikeys', 'APIKeyController@showAPIKeysView');
+Route::post('/apikeys', 'APIKeyController@generateAPIKey');
+Route::get('/apikeys/delete/{key_id}', 'APIKeyController@deleteAPIKey');
+
+//API Routes
+
+Route::get('/api/{number}', 'APIController@getNumber');
+Route::get('/api/{number}/ocn', 'APIController@getOCN');
+Route::get('/api/{number}/cnam', 'APIController@getCnam');
+Route::get('/api/{number}/assignee', 'APIController@getAssignee');
+Route::get('/api/{number}/location', 'APIController@getLocation');
+Route::get('/api/{number}/otc', 'APIController@getOTC');
+Route::get('/api/{number}/rao', 'APIController@getRAO');
+Route::get('/api/{number}/bsp', 'APIController@getBSP');
+Route::get('/api/{number}/collect', 'APIController@getCollect');
+Route::get('/api/{number}/altspid', 'APIController@getAltSPID');
+Route::get('/api/{number}/reachability', 'APIController@getReachability');
+Route::get('/api/{number}/type', 'APIController@getType');
+Route::get('/api/{number}/gusi', 'APIController@getGUSI');
+
+
+
+
+
+
+
+
 
 /*
 
-
+//Route::get('/gossip/edit/{number}/{cnam}/{ocn}/{assignee}/{location_zip}/{location}/{otc}/{rao}/{bsp}/{collect}/{alt_spid}/{service_indicator}/{reachability}/{type}/{gusi}/{pin}', 'GossipController@editNumber');
 Route::get('/mail', function(){
    return View::make('emails.mail', ['accesscode'=> 'ABDCD' , 'role' => 'Number Admin']);
 });

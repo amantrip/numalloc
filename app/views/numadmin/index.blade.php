@@ -180,6 +180,7 @@
                 <li><a href="/number/port">Port A Number</a></li>
                 <li><a href="/numadmin/reset">Reset Password</a></li>
                 <li><a href="/numadmin/edit">Edit Profile</a></li>
+                <li><a href="/apikeys" class="">API Keys</a></li>
             </ul>
         </li>
     </ul>
